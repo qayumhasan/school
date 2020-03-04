@@ -26,6 +26,8 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
     <!--Custom CSS-->
     <link rel="stylesheet" href="{{asset('public/admins/css/style.css')}}">
+    {{-- Select2 Css Link --}}
+    <link rel="stylesheet" href="{{asset('public/admins/plugins/select2/css/select2.min.css')}}">
     @stack('css')
 </head>
 
@@ -42,8 +44,6 @@
 
         <!-- include menu  -->
         @include('admin.include.menu')
-
-
         <!-- content wrpper -->
         <div class="content_wrapper">
 
@@ -103,7 +103,7 @@
     <!-- donut-chart -->
     <script src="{{asset('public/admins/plugins/donut-chart/dist/script.js')}}"></script>
 
-
+    <script src="{{asset('public/admins/plugins/select2/js/select2.full.min.js')}}"></script>
 
 
     <script type="text/javascript"

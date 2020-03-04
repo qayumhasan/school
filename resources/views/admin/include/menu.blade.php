@@ -21,7 +21,7 @@
                         </a>
 	                </li>
 
-	                  <li class="single-nav-wrapper">
+                <li class="single-nav-wrapper {{ Request::is('transport*') ? 'mm-active' : '' }}">
 	                      <a class="has-arrow menu-item" href="#" aria-expanded="false">
 	                        <span class="left-icon"><i class="fas fa-table"></i></span>
 	                          <span class="menu-text">Transport</span>
@@ -29,6 +29,20 @@
 	                        <ul class="dashboard-menu">
 	                          <li><a href="{{ route('admin.route.index') }}">Routes</a></li>
 	                          <li><a href="{{ route('admin.vehicle.index') }}">Vehicles</a></li>
+	                          <li><a href="{{ route('admin.assign.vehicle.index') }}">Assign Vehicle</a></li>
+	                          <li><a href="#">Student transport report (pending)</a></li>
+	                        </ul>
+                      </li>
+
+	                  <li class="single-nav-wrapper">
+	                      <a class="has-arrow menu-item" href="#" aria-expanded="false">
+	                        <span class="left-icon"><i class="fas fa-table"></i></span>
+	                          <span class="menu-text">Expanses</span>
+	                      </a>
+	                        <ul class="dashboard-menu">
+                            <li><a href="{{ route('admin.expanse.index') }}">expanse</a></li>
+	                          <li><a href="">Search expanse</a></li>
+                            <li><a href="{{ route('admin.expanse.header.all') }}">expanse header</a></li>
 	                        </ul>
 					  </li>
 					  

@@ -80,6 +80,7 @@ Route::group(['prefix' => 'class', 'namespace' => 'admin', 'middleware' => 'auth
 });
 
 Route::group(['prefix' => 'transport', 'namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
+
     Route::group(['prefix' => 'route'], function () {
         Route::get('/', 'RouteController@index')->name('admin.route.index');
         Route::post('store', 'RouteController@store')->name('admin.route.store');
@@ -101,6 +102,32 @@ Route::group(['prefix' => 'transport', 'namespace' => 'Admin', 'middleware' => '
         Route::get('status/update/{vehicleId}', 'VehicleController@statusUpdate')->name('admin.route.status.update');
         Route::post('multiple/delete', 'VehicleController@multipleDelete')->name('admin.vehicle.multiple.delete');
     });
+
+    Route::group(['prefix' => 'assign/vehicle'], function () {
+        Route::get('/', 'TransportController@index')->name('admin.assign.vehicle.index');
+        Route::post('store', 'TransportController@store')->name('admin.assign.vehicle.store');
+        Route::get('edit/{routeId}', 'TransportController@edit')->name('admin.assign.vehicle.edit');
+        Route::post('update/{routeId}', 'TransportController@update')->name('admin.assign.vehicle.update');
+        Route::get('delete/{routeId}', 'TransportController@delete')->name('admin.assign.vehicle.delete');
+        Route::post('multiple/delete', 'TransportController@multipleDelete')->name('admin.assign.vehicle.multiple.delete');
+    });
+});
+
+Route::group(['prefix' => 'expanses', 'middleware' => 'auth:admin', 'namespace' => 'Admin'], function () {
+    Route::get('/', 'ExpanseController@index')->name('admin.expanse.index');
+
+    Route::group(['prefix' => 'headers'], function () {
+        Route::get('/', 'ExpanseHeaderController@index')->name('admin.expanse.header.all');
+        Route::post('store', 'ExpanseHeaderController@store')->name('admin.expanse.header.store');
+        Route::get('status/update/{headerId}', 'ExpanseHeaderController@changeStatus')->name('admin.expanse.header.status.update');
+        Route::get('delete/{headerId}', 'ExpanseHeaderController@delete')->name('admin.expanse.header.delete');
+        Route::post('multiple/delete', 'ExpanseHeaderController@multipleDelete')->name('admin.expanse.header.multiple.delete');
+        Route::patch('update', 'ExpanseHeaderController@update')->name('admin.expanse.header.update');
+
+        // Ajax Routes
+        Route::get('edit/{headerId}', 'ExpanseController@getHeaderByAjax');
+    });
+
 });
 
 

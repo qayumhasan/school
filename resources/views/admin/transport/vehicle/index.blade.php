@@ -40,6 +40,7 @@
                                     <th>Vehicle Model</th>
                                     <th>Year Made</th>
                                     <th>Driver</th>
+                                    <th>Sit Quantity</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -58,6 +59,7 @@
                                     <td>{{ $vehicle->vehicle_model }}</td>
                                     <td>{{ $vehicle->year_made }}</td>
                                     <td>N/A</td>
+                                    <td>{{ $vehicle->sit_quantity }}</td>
                                     @if($vehicle->status==1)
                                     <td class="center"><span class="btn btn-sm btn-success">Active</span></td>
                                     @else
@@ -136,20 +138,10 @@
                     </div>
 
                     <div class="form-group row">
-
                         <div class="col-sm-12">
-                            <label for="inputEmail3" class="col-form-label text-right">Driver Name :</label>
-                            <select name="driver_id" class="form-control">
-                                <option value="">Select Driver</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <label for="inputEmail3" class="col-form-label text-right">Driver License (opt) :</label>
-                            <input type="text" class="form-control" placeholder="Driver License" name="driver_license">
-
+                            <label for="inputEmail3" class="col-form-label text-right">Sit qunatity :</label>
+                            <input type="number" class="form-control" placeholder="Sit quantity" name="sit_quantity">
+                            <span class="text-danger">{{ $errors->first('sit_quantity') }}</span>
                         </div>
                     </div>
 
