@@ -113,6 +113,10 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         array (
             'Illuminate\\' => 11,
         ),
+        'H' => 
+        array (
+            'Harimayco\\Menu\\' => 15,
+        ),
         'F' => 
         array (
             'Fideloper\\Proxy\\' => 16,
@@ -336,6 +340,10 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'Harimayco\\Menu\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/harimayco/laravel-menu/src',
+        ),
         'Fideloper\\Proxy\\' => 
         array (
             0 => __DIR__ . '/..' . '/fideloper/proxy/src',
@@ -453,11 +461,13 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Menu' => __DIR__ . '/../..' . '/app/Menu.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\RoomType' => __DIR__ . '/../..' . '/app/RoomType.php',
         'App\\Route' => __DIR__ . '/../..' . '/app/Route.php',
         'App\\RouteVehicle' => __DIR__ . '/../..' . '/app/RouteVehicle.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
@@ -1359,6 +1369,12 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'Harimayco\\Menu\\Controllers\\MenuController' => __DIR__ . '/..' . '/harimayco/laravel-menu/src/Controllers/MenuController.php',
+        'Harimayco\\Menu\\Facades\\Menu' => __DIR__ . '/..' . '/harimayco/laravel-menu/src/Facades/Menu.php',
+        'Harimayco\\Menu\\MenuServiceProvider' => __DIR__ . '/..' . '/harimayco/laravel-menu/src/MenuServiceProvider.php',
+        'Harimayco\\Menu\\Models\\MenuItems' => __DIR__ . '/..' . '/harimayco/laravel-menu/src/Models/MenuItems.php',
+        'Harimayco\\Menu\\Models\\Menus' => __DIR__ . '/..' . '/harimayco/laravel-menu/src/Models/Menus.php',
+        'Harimayco\\Menu\\WMenu' => __DIR__ . '/..' . '/harimayco/laravel-menu/src/WMenu.php',
         'Highlight\\Autoloader' => __DIR__ . '/..' . '/scrivo/highlight.php/Highlight/Autoloader.php',
         'Highlight\\HighlightResult' => __DIR__ . '/..' . '/scrivo/highlight.php/Highlight/HighlightResult.php',
         'Highlight\\Highlighter' => __DIR__ . '/..' . '/scrivo/highlight.php/Highlight/Highlighter.php',
