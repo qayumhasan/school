@@ -20,14 +20,14 @@ class VehicleController extends Controller
             'vehicle_number' => 'required',
             'vehicle_model' => 'required',
             'made_year' => 'required',
+            'sit_quantity' => 'required',
         ]);
 
         $addVehicle = new Vehicle();
         $addVehicle->vehicle_number = $request->vehicle_number;
         $addVehicle->vehicle_model = $request->vehicle_model;
         $addVehicle->year_made = $request->made_year;
-        $addVehicle->driver_id = $request->driver_id;
-        $addVehicle->driver_license = $request->driver_license;
+        $addVehicle->sit_quantity = $request->sit_quantity;
         $addVehicle->save();
 
         $notification = array(
@@ -50,14 +50,14 @@ class VehicleController extends Controller
             'vehicle_number' => 'required',
             'vehicle_model' => 'required',
             'year_made' => 'required',
+            'sit_quantity' => 'required',
         ]);
 
         $updateVehicle = Vehicle::where('id', $vehicleId)->firstOrFail();
         $updateVehicle->vehicle_number = $request->vehicle_number;
         $updateVehicle->vehicle_model = $request->vehicle_model;
         $updateVehicle->year_made = $request->year_made;
-        $updateVehicle->driver_id = $request->driver_id;
-        $updateVehicle->driver_license = $request->driver_license;
+        $updateVehicle->sit_quantity = $request->sit_quantity;
         $updateVehicle->save();
 
         $notification = array(
