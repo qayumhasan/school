@@ -30,6 +30,17 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
 
 });
 
+// Menu area start
+
+Route::namespace('Admin')->prefix('admin')->group(function(){
+
+    Route::get('/menu','AdminController@menuSetting')->name('admin.menu.setting');
+    Route::get('/url/setting','AdminController@urlSetting')->name('admin.url.setting');
+    Route::get('/get/url/name/{id}','AdminController@getUrlName');
+});
+
+
+
 Route::group(['prefix' => 'category', 'namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
 
     Route::get('/', 'CategoryController@index')->name('category.index');
@@ -91,5 +102,13 @@ Route::group(['prefix' => 'transport', 'namespace' => 'Admin', 'middleware' => '
         Route::post('multiple/delete', 'VehicleController@multipleDelete')->name('admin.vehicle.multiple.delete');
     });
 });
+
+
+// Hostel area start
+
+Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
+    Route::get('room/type/','RoomTypeController@index')->name('room.type');
+});
+// Hostel area end
 
 Auth::routes();

@@ -74,6 +74,8 @@
     <script src="{{asset('public/admins/js/bootstrap.min.js')}}"></script>
     <!-- Fontawesome-->
     <script src="{{asset('public/admins/js/all.min.js')}}"></script>
+    <!-- custom js -->
+    <script src="{{asset('public/admins/js/custom.js')}}"></script>
     <!-- metis menu -->
     <script src="https://unpkg.com/metismenu"></script>
 
