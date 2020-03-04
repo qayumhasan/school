@@ -30,17 +30,14 @@ class AuthController extends Controller
     public function login(Request $request)
     {
 
-        
         $data = request()->validate([
             'email' => 'required',
             'password' => 'required',
         ]);
-       
-        
+
         $admin = Admin::where('email', request('email'))->where('status',1)->first();
-        
             if ($admin) {
-                if (Auth::guard('admin')->attempt(['email' => request('email'), 'password' => request('password')], 
+                if (Auth::guard('admin')->attempt(['email' => request('email'), 'password' => request('password')],
                 request('remember'))) {
                     return redirect()->intended(route('admin.home'));
                 } else {
@@ -65,7 +62,7 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        
+
         $remember_token = rand(100000,900000);
         $request->validate(
            [
@@ -88,10 +85,10 @@ class AuthController extends Controller
            'verification_code' => $remember_token,
            'password' => bcrypt($request->password),
            'created_at' => Carbon::now(),
-           
+
        ]);
        return redirect('/admin/login');
-       
+
     }
 
 }
