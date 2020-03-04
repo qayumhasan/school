@@ -3,25 +3,32 @@
               <nav class="sidebar-nav">
              	 <ul class="metismenu" id="menu1">
              	 	<li class="single-nav-wrapper">
-	                    <a href="index.html" class="menu-item">
+	                    <a href="{{ route('admin.home') }}" class="menu-item">
 	                        <span class="left-icon"><i class="fas fa-home"></i></span>
-	                        <span class="menu-text">home</span>
+	                        <span class="menu-text">Home</span>
 	                    </a>
-	                  </li>
+	                </li>
+             	 	<li class="single-nav-wrapper">
+                      <a href="{{ route('category.index') }}" class="menu-item">
+	                        <span class="left-icon"><i class="fas fa-home"></i></span>
+	                        <span class="menu-text">Categories</span>
+	                    </a>
+	                </li>
 	                <li class="single-nav-wrapper">
-	                      <a class="menu-item" href="fomrs_editor_ch.html" aria-expanded="false">
-	                        <span class="left-icon"><i class="far fa-edit"></i></span>
-	                          <span class="menu-text">Forms</span>
-	                      </a>
-	                  </li>
+                        <a class="menu-item" href="{{ route('admin.class.index') }}" aria-expanded="false">
+                        <span class="left-icon"><i class="far fa-edit"></i></span>
+                            <span class="menu-text">Classes</span>
+                        </a>
+	                </li>
+
 	                  <li class="single-nav-wrapper">
 	                      <a class="has-arrow menu-item" href="#" aria-expanded="false">
 	                        <span class="left-icon"><i class="fas fa-table"></i></span>
-	                          <span class="menu-text">table</span>
+	                          <span class="menu-text">Transport</span>
 	                      </a>
 	                        <ul class="dashboard-menu">
-	                          <li><a href="basic_table.html">Basic table</a></li>
-	                          <li><a href="data_table.html">data table</a></li>
+	                          <li><a href="{{ route('admin.route.index') }}">Routes</a></li>
+	                          <li><a href="{{ route('admin.vehicle.index') }}">Vehicles</a></li>
 	                        </ul>
 	                  </li>
 	                  <li class="single-nav-wrapper">
@@ -93,11 +100,11 @@
 	                  <li class="single-nav-wrapper">
 	                      <a class="has-arrow menu-item" href="#" aria-expanded="false">
 	                        <span class="left-icon"><i class="far fa-copy"></i></span>
-	                        <span class="menu-text">Other pages</span>
+	                        <span class="menu-text">Trashes</span>
 	                      </a>
 	                      <ul class="dashboard-menu">
-	                        <li><a href="login.html">Login</a></li>
-	                        <li><a href="registration.html">Register</a></li>
+                          <li><a href="{{ route('admin.category.trashes') }}">Categories</a></li>
+                          <li><a href="{{ route('admin.class.trashes') }}">Class</a></li>
 	                        <li><a href="screen_lock.html">screen lock</a></li>
 	                        <li><a href="forget.html">forget Password</a></li>
 	                      </ul>

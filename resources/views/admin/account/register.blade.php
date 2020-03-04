@@ -11,22 +11,22 @@ s<!DOCTYPE html>
     <!--Page title-->
     <title>Admin DIT</title>
     <!--bootstrap-->
-    <link rel="stylesheet" href="{{asset('admins/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('public/admins/css/bootstrap.min.css')}}">
     <!--Custom CSS-->
-    <link rel="stylesheet" href="{{asset('admins/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('public/admins/css/style.css')}}">
 </head>
 
 <body id="page-top">
     <!-- preloader -->
     <div class="preloader">
-        <img src="{{asset('admin/images/preloader.gif')}}" alt="preloader">
+        <img src="{{asset('public/admin/images/preloader.gif')}}" alt="preloader">
     </div>
     <!-- wrapper -->
     <div class="wrapper without_header_sidebar">
         <!-- contnet wrapper -->
         <div class="content_wrapper">
             <!-- page content -->
-            <div class="login_page center_container" style="background: url('{{asset('admins/images/inventory-bg.jpg')}}');">
+            <div class="login_page center_container" style="background: url('{{asset('public/admins/images/inventory-bg.jpg')}}');">
                 <div class="center_content">
                     <div class="logo">
                         <!-- <img src="assets/images/logo.png" alt="" class="img-fluid"> -->
@@ -115,15 +115,15 @@ s<!DOCTYPE html>
     <!-- click to top -->
     <a href="javascript:void(0);" class="click_to_top" title="Scroll to Top" style="display: none;"><span>top</span></a>
     <!-- jquery -->
-    <script src="{{asset('admins/js/jquery.min.js')}}"></script>
+    <script src="{{asset('public/admins/js/jquery.min.js')}}"></script>
     <!-- popper Min Js -->
-    <script src="{{asset('admins/js/popper.min.js')}}"></script>
+    <script src="{{asset('public/admins/js/popper.min.js')}}"></script>
     <!-- Bootstrap Min Js -->
-    <script src="{{asset('admins/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('public/admins/js/bootstrap.min.js')}}"></script>
     <!-- Fontawesome-->
-    <script src="{{asset('admins/js/all.min.js')}}"></script>
+    <script src="{{asset('public/admins/js/all.min.js')}}"></script>
     <!-- Main js -->
-    <script src="{{asset('admins/js/main.js')}}"></script>
+    <script src="{{asset('public/admins/js/main.js')}}"></script>
 
 </body>
 
