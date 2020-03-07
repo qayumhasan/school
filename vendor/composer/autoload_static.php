@@ -433,6 +433,7 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
 
     public static $classMap = array (
         'App\\Admin' => __DIR__ . '/../..' . '/app/Admin.php',
+        'App\\Admin\\Subject' => __DIR__ . '/../..' . '/app/Admin/Subject.php',
         'App\\BloodGroup' => __DIR__ . '/../..' . '/app/BloodGroup.php',
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Classes' => __DIR__ . '/../..' . '/app/Classes.php',
@@ -445,6 +446,9 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'App\\Http\\Controllers\\Admin\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AuthController.php',
         'App\\Http\\Controllers\\Admin\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoryController.php',
         'App\\Http\\Controllers\\Admin\\ClassController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ClassController.php',
+        'App\\Http\\Controllers\\Admin\\ExpanseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ExpanseController.php',
+        'App\\Http\\Controllers\\Admin\\ExpanseHeaderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ExpanseHeaderController.php',
+        'App\\Http\\Controllers\\Admin\\RoomTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RoomTypeController.php',
         'App\\Http\\Controllers\\Admin\\RouteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RouteController.php',
         'App\\Http\\Controllers\\Admin\\TransportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TransportController.php',
         'App\\Http\\Controllers\\Admin\\VehicleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/VehicleController.php',

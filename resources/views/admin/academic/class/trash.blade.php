@@ -16,7 +16,7 @@
 
             </div>
 
-        <form action="{{ route('admin.class.multiple.hard.delete') }}" method="post">
+        <form id="multiple_delete" action="{{ route('admin.class.multiple.hard.delete') }}" method="post">
                 @csrf
                 <button type="submit" name="delete_all" style="margin: 5px;" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> Delete
                     all</button>

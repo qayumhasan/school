@@ -9,19 +9,19 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="panel_title">
-                            <span class="panel_icon"><i class="fas fa-border-all"></i></span><span>All Expanse</span>
+                            <span class="panel_icon"><i class="fas fa-border-all"></i></span><span>Subjects</span>
                         </div>
                     </div>
                     <div class="col-md-6 text-right">
                         <div class="panel_title">
                             <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal1"><i
-                                    class="fas fa-plus"></i></span> <span>Add Expanse</span></a>
+                                    class="fas fa-plus"></i></span> <span>Add Subject</span></a>
                         </div>
                     </div>
                 </div>
 
             </div>
-            <form id="multiple_delete" action="{{ route('admin.expanse.multiple.delete') }}" method="post">
+        <form id="multiple_delete" action="{{ route('admin.academic.subject.multiple.delete') }}" method="post">
                 @csrf
                 <button type="submit" style="margin: 5px;" class="btn btn-sm btn-danger">
                     <i class="fa fa-trash"></i> Delete all</button>
@@ -37,56 +37,48 @@
                                             <span class="checkmark"></span>
                                         </label>
                                     </th>
-                                    <th>Invoice No</th>
-                                    <th>Date</th>
-                                    <th>Month</th>
-                                    <th>Year</th>
-                                    <th>Expanse Head</th>
-                                    <th>Note</th>
+                                    <th>Subject Name</th>
+                                    <th>Subject Type</th>
+                                    <th>Subject Code</th>
                                     <th>Status</th>
-                                    <th>Amount</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($expanses as $expanse)
+                                @foreach($subjects as $subject)
                                 <tr class="text-center">
                                     <td>
                                         <label class="chech_container mb-4">
                                             <input type="checkbox" name="deleteId[]" class="checkbox"
-                                                value="{{$expanse->id}}">
+                                                value="{{$subject->id}}">
                                             <span class="checkmark"></span>
                                         </label>
                                     </td>
-                                    <td>{{ $expanse->invoice_no }}</td>
-                                    <td>{{ $expanse->date }}</td>
-                                    <td>{{ $expanse->month }}</td>
-                                    <td>{{ $expanse->year }}</td>
-                                    <td>{{ $expanse->ExpanseHeader->name }}</td>
-                                    <td>{{ $expanse->note }}</td>
-                                    @if($expanse->status==1)
+                                    <td>{{$subject->name}}</td>
+                                    <td>{{$subject->type == 1 ? 'Theory' : 'Practical'}}</td>
+                                    <td>{{$subject->code}}</td>
+                                    @if($subject->status==1)
                                     <td class="center"><span class="btn btn-sm btn-success">Active</span></td>
                                     @else
                                     <td class="center"><span class="btn btn-sm btn-danger">Inactive</span></td>
                                     @endif
-                                    <td>{{$expanse->amount}}</td>
                                     <td>
-                                        @if($expanse->status==1)
-                                        <a href="{{ route('admin.expanse.status.update', $expanse->id ) }}"
+                                        @if($subject->status==1)
+                                        <a href="{{ route('admin.academic.subject.status.update', $subject->id ) }}"
                                             class="btn btn-success btn-sm ">
                                             <i class="fas fa-thumbs-up"></i></a>
                                         @else
-                                        <a href="{{ route('admin.expanse.status.update', $expanse->id ) }}"
+                                        <a href="{{ route('admin.academic.subject.status.update', $subject->id ) }}"
                                             class="btn btn-danger btn-sm">
                                             <i class="fas fa-thumbs-down"></i>
                                         </a>
                                         @endif
-                                    | <a href="{{ route('admin.expanse.edit', $expanse->id) }}" class="editcat btn btn-sm btn-blue text-white"><i class="fas fa-pencil-alt"></i></a> |
-                                        <a id="delete" href="{{ route('admin.expanse.delete', $expanse->id) }}"
+                                    | <a href="{{ route('admin.academic.subject.edit', $subject->id) }}" class="edit_class btn btn-sm btn-blue text-white"
+                                            ><i class="fas fa-pencil-alt"></i></a> |
+                                        <a id="delete" href="{{ route('admin.academic.subject.delete', $subject->id) }}"
                                             class="btn btn-danger btn-sm text-white" title="Delete">
                                             <i class="far fa-trash-alt"></i>
                                         </a>
-
                                     </td>
                                 </tr>
                                 @endforeach
@@ -105,49 +97,32 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Add Expanse</h4>
+                <h4 class="modal-title">Add Subject</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form class="form-horizontal" action="{{ route('admin.expanse.store') }}" method="POST">
+                <form class="form-horizontal" action="{{ route('admin.academic.subject.store') }}" method="POST">
                     @csrf
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <label class="col-form-label text-right">Invoice No :</label>
-                            <input type="text" class="form-control" value="{{$invoiceId}}" name="invoice_no" readonly>
+                            <label class="col-form-label text-right">Subject Name :</label>
+                            <input type="text" class="form-control" value="{{ old('name') }}" placeholder="Subject Name" name="name" required>
                         </div>
                     </div>
+
                     <div class="form-group row">
-                        <div class="col-sm-12">
-                            <label  class="col-form-label text-right">Header :</label>
-                            {{-- <input type="text" class="form-control" placeholder="Category name" name="name" required> --}}
-                            <select required name="header_id" class="form-control">
-                                <option value="">Select Header</option>
-                                @foreach ($headers as $header)
-                            <option value="{{ $header->id }}"> {{ $header->name }} </option>
-                                @endforeach
-                            </select>
+                        <div class="col-md-6">
+                           <input type="radio" value="1" class="mr-1" name="type" required> <b> Theory </b>
+                           <input type="radio"  value="2" class="mr-1" name="type" required><b> Practical </b>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <label class="col-form-label text-right">Date :</label>
-                        <input type="date" class="form-control" value="{{date('Y-m-d')}}" name="date" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <label class="col-form-label text-right">Amount :</label>
-                            <input type="number" class="form-control" placeholder="Amount" name="amount" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <label class="col-form-label text-right">Note (Optional) :</label>
-                            <textarea name="note" id="" cols="10" placeholder="Note" rows="3" class="form-control"></textarea>
+                            <label class="col-form-label text-right">Subject Code :</label>
+                            <input type="text" class="form-control" value="{{ old('code') }}" placeholder="Subject Code" name="code" required>
                         </div>
                     </div>
 
@@ -162,6 +137,7 @@
 </div>
 
 
+
 @endsection
 
 @push('js')
@@ -172,16 +148,11 @@
     $(document).ready(function () {
 
         $('#check_all').on('click', function (e) {
-
             if ($(this).is(':checked', true)) {
                 $(".checkbox").prop('checked', true);
-
             } else {
-
                 $(".checkbox").prop('checked', false);
-
             }
-
         });
 
     });
