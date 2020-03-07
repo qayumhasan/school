@@ -43,7 +43,7 @@
                     </thead>
                     <tbody>
 
-                    @foreach($roomtypes as $roomtype)
+                   
                         <tr>
                             <td>
                                 <label class="chech_container mb-4">
@@ -51,28 +51,28 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </td>
-                            <td>{{$roomtype->room_type}}</td>
-                            <td>{{substr($roomtype->description,0,120)}}</td>
+                            <td>dsfgdsf</td>
+                            <td>dsgfdsgfds</td>
                             <td>
-                                @if($roomtype->status ==1)
-                                <a href="{{ route('room.type.status.update', $roomtype->id) }}" class="btn btn-success btn-sm ">
+                                
+                                <a href="{{ route('room.type.status.update', 1) }}" class="btn btn-success btn-sm ">
                                     <i class="fas fa-thumbs-up"></i></a>
-                                @else
-                                <a href="{{ route('room.type.status.update', $roomtype->id ) }}" class="btn btn-danger btn-sm">
+                                
+                                <a href="{{ route('room.type.status.update', 2 ) }}" class="btn btn-danger btn-sm">
                                     <i class="fas fa-thumbs-down"></i>
                                 </a>
                                 @endif
                             </td>
              
                             <td>
-                                | <a class="edit_route btn btn-sm btn-blue text-white" data-id="{{$roomtype->id}}" title="edit" data-toggle="modal" data-target="#editModal"><i class="fas fa-pencil-alt"></i></a> |
-                                <a id="delete" href="{{ route('room.type.delete',$roomtype->id) }}" class="btn btn-danger btn-sm text-white" title="Delete">
+                                | <a class="edit_route btn btn-sm btn-blue text-white" data-id="" title="edit" data-toggle="modal" data-target="#editModal"><i class="fas fa-pencil-alt"></i></a> |
+                                <a id="delete" href="" class="btn btn-danger btn-sm text-white" title="Delete">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
                         </tr>
 
-                    @endforeach
+                    
                        
 
                     </tbody>
