@@ -17,6 +17,7 @@ class CreateRoomTypesTable extends Migration
             $table->bigIncrements('id');
             $table->string('room_type');
             $table->text('description');
+            $table->text('status')->default(1);
             $table->timestamps();
         });
     }
