@@ -15,7 +15,7 @@
                 </a>
             </li>
 
-            <li class="single-nav-wrapper {{ Request::is('academic*') ? 'mm-active' : '' }}">
+            <li class="single-nav-wrapper {{ Request::is('admin/academic*') ? 'mm-active' : '' }}">
                 <a class="has-arrow menu-item" href="#" aria-expanded="false">
                     <span class="left-icon"><i class="fas fa-chart-line"></i></span>
                     <span class="menu-text">Academic</span>
@@ -23,15 +23,20 @@
                 <ul class="dashboard-menu">
                     <li>
                         <a href="{{ route('admin.class.index') }}"> Class</a>
+                        <a href=""> Asign teacher to class</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.academic.subject.index') }}"> Subject </a>
+                        <a href="{{ route('admin.academic.assign.all.assigned.subject') }}"> Subject </a>
+                        <a href="{{ route('admin.academic.assign.all.assigned.subject') }}"> Asign subject to class</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.academic.section.index') }}"> Section </a>
                     </li>
                 </ul>
             </li>
 
 
-            <li class="single-nav-wrapper {{ Request::is('transport*') ? 'mm-active' : '' }}">
+            <li class="single-nav-wrapper {{ Request::is('admin/transport*') ? 'mm-active' : '' }}">
                 <a class="has-arrow menu-item" href="#" aria-expanded="false">
                     <span class="left-icon"><i class="fas fa-table"></i></span>
                     <span class="menu-text">Transport</span>
@@ -40,11 +45,11 @@
                     <li><a href="{{ route('admin.route.index') }}">Routes</a></li>
                     <li><a href="{{ route('admin.vehicle.index') }}">Vehicles</a></li>
                     <li><a href="{{ route('admin.assign.vehicle.index') }}">Assign Vehicle</a></li>
-                    <li><a href="#">Student transport report (pending)</a></li>
+                    <li><a href="">Student transport report (pending)</a></li>
                 </ul>
             </li>
 
-            <li class="single-nav-wrapper {{ Request::is('expanses*') ? 'mm-active' : '' }}">
+            <li class="single-nav-wrapper {{ Request::is('admin/expanses*') ? 'mm-active' : '' }}">
                 <a class="has-arrow menu-item" href="#" aria-expanded="false">
                     <span class="left-icon"><i class="fas fa-table"></i></span>
                     <span class="menu-text">Expanses</span>

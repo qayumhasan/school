@@ -3,15 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Classes;
+use App\ClassSection;
 use App\Http\Controllers\Controller;
+use App\Section;
 use Illuminate\Http\Request;
 
 class ClassController extends Controller
 {
     public function index()
     {
-        $classes = Classes::where('is_deleted', 0)->get();
-        return view('admin.academic.class.index', compact('classes'));
+        $classes = Classes::with(['classSections', 'classSections.section'])->where('is_deleted', 0)->get();
+
+        $sections = Section::where('status', 1)->get();
+        return view('admin.academic.class.index', compact('classes', 'sections'));
     }
 
     public function store(Request $request)
@@ -19,9 +23,17 @@ class ClassController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:classes,name'
         ]);
+
         $addClass = new Classes();
         $addClass->name = $request->name;
         $addClass->save();
+        foreach ($request->sectionIds as $sectionId) {
+           $addClassSections = new ClassSection();
+           $addClassSections->class_id = $addClass->id;
+           $addClassSections->section_id = $sectionId;
+           $addClassSections->save();
+        }
+
 
         $notification = array(
             'messege' => 'Class inserted successfully:)',
@@ -30,14 +42,35 @@ class ClassController extends Controller
         return Redirect()->back()->with($notification);
     }
 
-    public function update(Request $request)
+    public function edit($classId)
+    {
+        $class = Classes::with('classSections')->where('id', $classId)->firstOrFail();
+        $sections = Section::select(['id', 'name'])->where('status', 1)->get();
+        return view('admin.academic.class.edit', compact('class', 'sections'));
+    }
+
+    public function update(Request $request, $classId)
     {
         $this->validate($request, [
-            'name' => 'required|unique:classes,name,' . $request->id
+            'name' => 'required|unique:classes,name,' . $classId
         ]);
-        $updateCategory = Classes::where('id', $request->id)->first();
-        $updateCategory->name = $request->name;
-        $updateCategory->save();
+
+        $updateClass = Classes::where('id', $classId)->first();
+        $updateClass->name = $request->name;
+        $updateClass->save();
+
+        $allPreviousClassSections = ClassSection::where('class_id', $classId)->get();
+
+        foreach ($allPreviousClassSections as $value) {
+            $value->delete();
+        }
+
+        foreach ($request->sectionIds as $sectionId) {
+           $addClassSections = new ClassSection();
+           $addClassSections->class_id = $updateClass->id;
+           $addClassSections->section_id = $sectionId;
+           $addClassSections->save();
+        }
 
         $notification = array(
             'messege' => 'Class updated successfully:)',
