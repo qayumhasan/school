@@ -9,18 +9,19 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="panel_title">
-                            <span class="panel_icon"><i class="fas fa-border-all"></i></span><span>All Assigned Vehicle</span>
+                            <span class="panel_icon"><i class="fas fa-border-all"></i></span><span>All Assigned Subject</span>
                         </div>
                     </div>
                     <div class="col-md-6 text-right">
                         <div class="panel_title">
                             <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal1"><i
-                                    class="fas fa-plus"></i></span> <span>Assign Vehicle</span></a>
+                                    class="fas fa-plus"></i></span> <span>Assign Subject</span></a>
                         </div>
                     </div>
                 </div>
             </div>
-        <form action="{{ route('admin.assign.vehicle.multiple.delete') }}" id="multiple_delete" method="post">
+            {{-- {{ route('admin.assign.subject.class.multiple.delete') }} --}}
+        <form action="" id="multiple_delete" method="post">
                 @csrf
                 <button type="submit" style="margin: 5px;" class="btn btn-sm btn-danger">
                     <i class="fa fa-trash"></i> Delete all</button>
@@ -28,7 +29,7 @@
                     <div class="table-responsive">
                         <table id="dataTableExample1" class="table table-bordered table-striped table-hover mb-2">
                             <thead>
-                                <tr class="text-center">
+                                <tr class="text-left">
                                     <th>
                                         <label class="chech_container mb-1 p-0">
                                             Select all
@@ -36,37 +37,39 @@
                                             <span class="checkmark"></span>
                                         </label>
                                     </th>
-                                    <th>Route</th>
-                                    <th>Vehicles</th>
-                                    <th>Action</th>
+                                    <th>Class</th>
+                                    <th>Section</th>
+                                    <th>Subjects</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($assignedRoutes as $assignedRoute)
-                                    <tr class="text-center">
+
+                                    <tr class="text-left">
                                         <td>
                                             <label class="chech_container mb-4">
                                             <input type="checkbox" name="deleteId[]" class="checkbox"
-                                            value="{{ $assignedRoute->id }}">
+                                            value="">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </td>
-                                        <td>{{ $assignedRoute->name }}</td>
-                                        <td>
-                                            @foreach ($assignedRoute->routeVehicles as $routeVehicle)
-                                                <div><b>{{ $routeVehicle->vehicle->vehicle_model }}</b></div>
-                                            @endforeach
+                                        <td>Class</td>
+                                        <td>a</td>
+                                        <td class="text-left">
+                                            <b>- Bangle</b> <br/>
+                                            <b>- Math</b><br/>
+                                            <b>- English 1st part</b><br/>
+                                            <b>- English 2st part</b><br/>
                                         </td>
 
-                                        <td>
-                                        <a href="{{ route('admin.assign.vehicle.edit', $assignedRoute->id) }}" class="edit_route btn btn-sm btn-blue text-white"><i class="fas fa-pencil-alt"></i></a> |
-                                        <a id="delete" href="{{ route('admin.assign.vehicle.delete', $assignedRoute->id) }}"
+                                        <td class="text-center">
+                                        <a href="" class="edit_route btn btn-sm btn-blue text-white"><i class="fas fa-pencil-alt"></i></a> |
+                                        <a id="delete" href=""
                                                 class="btn btn-danger btn-sm text-white" title="Delete">
                                                 <i class="far fa-trash-alt"></i>
                                             </a>
                                         </td>
                                     </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -82,32 +85,42 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Assign Vehicle Form</h4>
+                <h4 class="modal-title">Assign Subject To Class</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-            <form class="form-horizontal" action="{{ route('admin.assign.vehicle.store') }}" method="POST">
+            <form class="form-horizontal" action="{{ route('admin.academic.assign.subject.class') }}" method="POST">
                     @csrf
                     <div class="form-group row">
 
                         <div class="col-sm-12">
-                            <label for="inputEmail3" class="col-form-label text-right">Select route:</label>
-                            <select required class="select2"  name="route_id" data-placeholder="Select Vehicles" data-dropdown-css-class="select2-purple" style="width: 100%;">
-                                <option value="">Select route</option>
-                                @foreach ($formRoutes as $route)
-                                    <option value="{{ $route->id }}">{{ $route->name }}</option>
+                            <label for="inputEmail3" class="col-form-label text-right">Class :</label>
+                            <select required class="form-control select_class" name="class_id">
+                                <option value="">Select class</option>
+                                @foreach ($formClasses as $class)
+                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <label for="inputEmail3" class=" col-form-label text-right">Select vehicles (Multiple):</label>
-                            <select required class="select2" multiple="multiple" name="vehicle_ids[]" data-placeholder="Vehicles" data-dropdown-css-class="select2-purple" style="width: 100%;">
-                                @foreach ($formVehicles as $vehicle)
-                                    <option value="{{ $vehicle->id }}">{{ $vehicle->vehicle_model }}</option>
+                            <label for="inputEmail3" class=" col-form-label text-right">Select Section :</label>
+                            <select required class="form-control" id="sections" name="section_id">
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <label for="inputEmail3" class=" col-form-label text-right">Select Section :</label>
+                            <select class="select2" multiple="multiple" name="subject_ids[]" data-placeholder="Section" data-dropdown-css-class="select2-purple" style="width: 100%;" required>
+                                @foreach ($formSubjects as $subject)
+                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -143,6 +156,7 @@
     });
 
 </script>
+
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -150,6 +164,30 @@
        $('.select2').select2()
         //Initialize Select2 Elements
     });
+
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+       $('.select_class').on('change', function () {
+            var classId = $(this).val();
+            $.ajax({
+                url:"{{ url('admin/academic/assign/subjects/get/sections/by/') }}"+"/"+classId,
+                type:'get',
+                dataType:'json',
+                success:function(data){
+                    //console.log(data);
+                    $('#sections').empty();
+                    $('#sections').append(' <option value="">--Select Section--</option>');
+                    $.each(data,function(key, val){
+                        $('#sections').append(' <option value="'+ val.section_id +'">'+ val.section.name +'</option>');
+                    })
+                }
+            })
+       })
+    });
+
 </script>
 
 @endpush

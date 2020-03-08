@@ -194,7 +194,7 @@
             var routeId = $(this).data('id');
             if (routeId) {
                 $.ajax({
-                    url: "{{ url('transport/route/edit/') }}/" + routeId,
+                    url: "{{ url('admin/transport/route/edit/') }}/" + routeId,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {

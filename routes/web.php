@@ -60,11 +60,11 @@ Route::group(['prefix' => 'admin/category', 'namespace' => 'Admin', 'middleware'
 
 Route::group(['prefix' => 'admin/academic', 'namespace' => 'admin', 'middleware' => 'auth:admin'], function () {
 
-
     Route::group(['prefix' => 'class'], function () {
         Route::get('/', 'ClassController@index')->name('admin.class.index');
         Route::post('store', 'ClassController@store')->name('admin.class.store');
-        Route::patch('update', 'ClassController@update')->name('admin.class.update');
+        Route::get('edit/{classId}', 'ClassController@edit')->name('admin.class.edit');
+        Route::post('update/{classId}', 'ClassController@update')->name('admin.class.update');
 
         Route::get('status/change/{classId}', 'ClassController@changeStatus')->name('admin.class.status.update');
         Route::get('soft/delete/{classId}', 'ClassController@softDelete')->name('admin.class.soft.delete');
@@ -76,8 +76,6 @@ Route::group(['prefix' => 'admin/academic', 'namespace' => 'admin', 'middleware'
         Route::get('hard/delete/{classId}', 'ClassController@hardDelete')->name('admin.class.hard.delete');
         Route::post('multiple/hard/delete', 'ClassController@multipleHardDelete')->name('admin.class.multiple.hard.delete');
 
-        // Ajax Routes
-        Route::get('/edit/{classId}', 'ClassController@getClassNameByAjax');
     });
 
     Route::group(['prefix' => 'subject'], function () {
@@ -89,6 +87,28 @@ Route::group(['prefix' => 'admin/academic', 'namespace' => 'admin', 'middleware'
         Route::get('edit/{subjectId}', 'SubjectController@edit')->name('admin.academic.subject.edit');
         Route::post('update/{subjectId}', 'SubjectController@update')->name('admin.academic.subject.update');
     });
+
+    Route::group(['prefix' => 'section'], function () {
+        Route::get('/', 'SectionController@index')->name('admin.academic.section.index');
+        Route::post('store', 'SectionController@store')->name('admin.academic.section.store');
+        Route::patch('update', 'SectionController@update')->name('admin.academic.section.update');
+        Route::get('delete/{section}', 'SectionController@delete')->name('admin.academic.delete');
+        Route::post('multiple/delete', 'SectionController@multipleDelete')->name('admin.academic.section.multiple.delete');
+        Route::get('change/status/{section}', 'SectionController@changeStatus')->name('admin.academic.section.status.update');
+
+
+         // Ajax Routes
+         Route::get('/edit/{sectionId}', 'SectionController@getSectionByAjax');
+    });
+
+    Route::group(['prefix' => 'assign/subjects'], function () {
+        Route::get('/', 'AcademicAssignController@allAssignedSubject')->name('admin.academic.assign.all.assigned.subject');
+        Route::post('subject/assign', 'AcademicAssignController@subjectAssign')->name('admin.academic.assign.subject.class');
+
+        // Ajax Routes
+        Route::get('get/sections/by/{classId}', 'AcademicAssignController@getSectionByAjax');
+    });
+
 });
 
 Route::group(['prefix' => 'admin/transport', 'namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
@@ -123,6 +143,7 @@ Route::group(['prefix' => 'admin/transport', 'namespace' => 'Admin', 'middleware
         Route::get('delete/{routeId}', 'TransportController@delete')->name('admin.assign.vehicle.delete');
         Route::post('multiple/delete', 'TransportController@multipleDelete')->name('admin.assign.vehicle.multiple.delete');
     });
+
 });
 
 Route::group(['prefix' => 'admin/expanses', 'middleware' => 'auth:admin', 'namespace' => 'Admin'], function () {
@@ -152,6 +173,7 @@ Route::group(['prefix' => 'admin/expanses', 'middleware' => 'auth:admin', 'names
         // Ajax Routes
         Route::get('edit/{headerId}', 'ExpanseHeaderController@getHeaderByAjax');
     });
+
 });
 
 
