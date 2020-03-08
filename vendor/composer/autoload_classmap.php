@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Admin' => $baseDir . '/app/Admin.php',
+    'App\\Admin\\Subject' => $baseDir . '/app/Admin/Subject.php',
     'App\\BloodGroup' => $baseDir . '/app/BloodGroup.php',
     'App\\Category' => $baseDir . '/app/Category.php',
     'App\\Classes' => $baseDir . '/app/Classes.php',
@@ -19,6 +20,9 @@ return array(
     'App\\Http\\Controllers\\Admin\\AuthController' => $baseDir . '/app/Http/Controllers/Admin/AuthController.php',
     'App\\Http\\Controllers\\Admin\\CategoryController' => $baseDir . '/app/Http/Controllers/Admin/CategoryController.php',
     'App\\Http\\Controllers\\Admin\\ClassController' => $baseDir . '/app/Http/Controllers/Admin/ClassController.php',
+    'App\\Http\\Controllers\\Admin\\ExpanseController' => $baseDir . '/app/Http/Controllers/Admin/ExpanseController.php',
+    'App\\Http\\Controllers\\Admin\\ExpanseHeaderController' => $baseDir . '/app/Http/Controllers/Admin/ExpanseHeaderController.php',
+    'App\\Http\\Controllers\\Admin\\RoomTypeController' => $baseDir . '/app/Http/Controllers/Admin/RoomTypeController.php',
     'App\\Http\\Controllers\\Admin\\RouteController' => $baseDir . '/app/Http/Controllers/Admin/RouteController.php',
     'App\\Http\\Controllers\\Admin\\TransportController' => $baseDir . '/app/Http/Controllers/Admin/TransportController.php',
     'App\\Http\\Controllers\\Admin\\VehicleController' => $baseDir . '/app/Http/Controllers/Admin/VehicleController.php',

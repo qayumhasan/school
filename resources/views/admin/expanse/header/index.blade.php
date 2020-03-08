@@ -15,13 +15,13 @@
                     <div class="col-md-6 text-right">
                         <div class="panel_title">
                             <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal1"><i
-                                    class="fas fa-plus"></i></span> <span>Add Class</span></a>
+                                    class="fas fa-plus"></i></span> <span>Add Header</span></a>
                         </div>
                     </div>
                 </div>
 
             </div>
-        <form action="{{ route('admin.expanse.header.multiple.delete') }}" method="post">
+        <form id="multiple_delete" action="{{ route('admin.expanse.header.multiple.delete') }}" method="post">
                 @csrf
                 <button type="submit" style="margin: 5px;" class="btn btn-sm btn-danger">
                     <i class="fa fa-trash"></i> Delete all</button>
@@ -115,7 +115,7 @@
                     <div class="form-group row">
                         <label for="note" class="col-sm-3 col-form-label text-right">Note:</label>
                         <div class="col-sm-8">
-                            <textarea name="note" id="note" class="form-control" placeholder="Category name" cols="5" rows="3"></textarea>
+                            <textarea name="note" id="note" class="form-control" placeholder="Note" cols="5" rows="3"></textarea>
                         </div>
                     </div>
 
@@ -156,8 +156,10 @@
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label text-right">Note:</label>
                         <div class="col-sm-8">
-                        
-                                <textarea name="note" id="note" class="form-control" placeholder="Header note" cols="5" rows="3"></textarea>
+
+                                <textarea name="note" id="note" class="form-control note" placeholder="Header note" cols="5" rows="3">
+
+                                </textarea>
 
                             <span class="text-danger">{{ $errors->first('note') }}</span>
                         </div>
@@ -202,11 +204,12 @@
             var headerId = $(this).data('id');
             if (headerId) {
                 $.ajax({
-                    url: "{{ url('expanses/headers/edit/') }}/" + headerId,
+                    url: "{{ url('admin/expanses/headers/edit/') }}/" + headerId,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
                         $("#name").val(data.name);
+                        $(".note").val(data.note);
                         $("#id").val(data.id);
                     }
                 });

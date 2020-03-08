@@ -21,7 +21,7 @@
                 </div>
 
             </div>
-        <form action="{{ route('admin.class.multiple.soft.delete') }}" method="post">
+        <form id="multiple_delete" action="{{ route('admin.class.multiple.soft.delete') }}" method="post">
                 @csrf
                 <button type="submit" style="margin: 5px;" class="btn btn-sm btn-danger">
                     <i class="fa fa-trash"></i> Delete all</button>
@@ -166,7 +166,6 @@
     $(document).ready(function () {
 
         $('#check_all').on('click', function (e) {
-
             if ($(this).is(':checked', true)) {
                 $(".checkbox").prop('checked', true);
             } else {
@@ -184,7 +183,7 @@
             var classId = $(this).data('id');
             if (classId) {
                 $.ajax({
-                    url: "{{ url('class/edit/') }}/" + classId,
+                    url: "{{ url('admin/academic/class/edit/') }}/" + classId,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {

@@ -10,7 +10,7 @@ class ExpanseHeaderController extends Controller
 {
     public function index()
     {
-        $headers = ExpanseHeader::all();
+        $headers = ExpanseHeader::latest()->get();
         return view('admin.expanse.header.index', compact('headers'));
     }
 
@@ -62,6 +62,28 @@ class ExpanseHeaderController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
+
+    public function multipleDelete(Request $request)
+    {
+        if ($request->deleteId == null) {
+            $notification = array(
+                'messege' => 'You did not select any category',
+                'alert-type' => 'error'
+            );
+            return Redirect()->back()->with($notification);
+        } else {
+            foreach ($request->deleteId as $headerId) {
+                ExpanseHeader::where('id', $headerId)->delete();
+            }
+        }
+        $notification = array(
+            'messege' => 'Header is deleted successfully:)',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+
+    
 
     public function getHeaderByAjax($headerId)
     {

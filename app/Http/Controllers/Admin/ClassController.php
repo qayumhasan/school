@@ -11,7 +11,7 @@ class ClassController extends Controller
     public function index()
     {
         $classes = Classes::where('is_deleted', 0)->get();
-        return view('admin.class.index', compact('classes'));
+        return view('admin.academic.class.index', compact('classes'));
     }
 
     public function store(Request $request)
@@ -112,7 +112,7 @@ class ClassController extends Controller
     public function trashes()
     {
         $classes = Classes::where('is_deleted', 1)->get();
-        return view('admin.class.trash', compact('classes'));
+        return view('admin.academic.class.trash', compact('classes'));
     }
 
     public function refactor($classId)
