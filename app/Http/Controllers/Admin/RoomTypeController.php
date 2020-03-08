@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class RoomTypeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
     public function index()
     {
         
@@ -23,7 +29,7 @@ class RoomTypeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'room_type' => 'required|unique:classes,name,',
+            'room_type' => 'required',
             'description' => 'required'
         ]);
 
