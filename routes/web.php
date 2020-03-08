@@ -157,8 +157,20 @@ Route::group(['prefix' => 'admin/expanses', 'middleware' => 'auth:admin', 'names
 
 // Hostel area start
 
-Route::group(['prefix' => 'admin/hostel', 'namespace' => 'Admin'], function () {
-    Route::get('room/type/', 'RoomTypeController@index')->name('room.type');
+
+Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
+
+    Route::group(['prefix'=>'room/type'],function(){
+        Route::get('/','RoomTypeController@index')->name('room.type');
+        Route::post('/store','RoomTypeController@store')->name('hostel.room.type.store');
+        Route::get('/edit/{id}','RoomTypeController@edit');
+        Route::PATCH('/update','RoomTypeController@update')->name('room.type.update');
+        Route::post('/multidelete','RoomTypeController@multipleDelete')->name('room.type.multidelete');
+        Route::get('/status/update/{id}','RoomTypeController@changeStatus')->name('room.type.status.update');
+        Route::get('/delete/{id}','RoomTypeController@destroy')->name('room.type.delete');
+
+    });
+
 });
 // Hostel area end
 
