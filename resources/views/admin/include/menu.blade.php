@@ -85,7 +85,7 @@
                 <ul class="dashboard-menu">
                     <li><a href="chart-float.html">Hostel Room</a></li>
                     <li><a href="{{route('room.type')}}">Room Type</a></li>
-                    <li><a href="chart-float.html">Hostel</a></li>
+                    <li><a href="{{route('admin.hostel')}}">Hostel</a></li>
                     <li><a href="chart-float.html">Student Hostel Report</a></li>
                 </ul>
             </li>

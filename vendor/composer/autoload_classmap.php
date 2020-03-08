@@ -17,6 +17,7 @@ return array(
     'App\\Expanse' => $baseDir . '/app/Expanse.php',
     'App\\ExpanseHeader' => $baseDir . '/app/ExpanseHeader.php',
     'App\\Gender' => $baseDir . '/app/Gender.php',
+    'App\\Hostel' => $baseDir . '/app/Hostel.php',
     'App\\Http\\Controllers\\Admin\\AdminController' => $baseDir . '/app/Http/Controllers/Admin/AdminController.php',
     'App\\Http\\Controllers\\Admin\\AuthController' => $baseDir . '/app/Http/Controllers/Admin/AuthController.php',
     'App\\Http\\Controllers\\Admin\\CategoryController' => $baseDir . '/app/Http/Controllers/Admin/CategoryController.php',
@@ -25,7 +26,9 @@ return array(
     'App\\Http\\Controllers\\Admin\\ExpanseHeaderController' => $baseDir . '/app/Http/Controllers/Admin/ExpanseHeaderController.php',
     'App\\Http\\Controllers\\Admin\\RoomTypeController' => $baseDir . '/app/Http/Controllers/Admin/RoomTypeController.php',
     'App\\Http\\Controllers\\Admin\\RouteController' => $baseDir . '/app/Http/Controllers/Admin/RouteController.php',
+
     'App\\Http\\Controllers\\Admin\\SectionController' => $baseDir . '/app/Http/Controllers/Admin/SectionController.php',
+
     'App\\Http\\Controllers\\Admin\\SubjectController' => $baseDir . '/app/Http/Controllers/Admin/SubjectController.php',
     'App\\Http\\Controllers\\Admin\\TransportController' => $baseDir . '/app/Http/Controllers/Admin/TransportController.php',
     'App\\Http\\Controllers\\Admin\\VehicleController' => $baseDir . '/app/Http/Controllers/Admin/VehicleController.php',
@@ -54,7 +57,9 @@ return array(
     'App\\RoomType' => $baseDir . '/app/RoomType.php',
     'App\\Route' => $baseDir . '/app/Route.php',
     'App\\RouteVehicle' => $baseDir . '/app/RouteVehicle.php',
+
     'App\\Section' => $baseDir . '/app/Section.php',
+
     'App\\Subject' => $baseDir . '/app/Subject.php',
     'App\\User' => $baseDir . '/app/User.php',
     'App\\Vehicle' => $baseDir . '/app/Vehicle.php',

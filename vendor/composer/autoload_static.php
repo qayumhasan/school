@@ -443,6 +443,7 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'App\\Expanse' => __DIR__ . '/../..' . '/app/Expanse.php',
         'App\\ExpanseHeader' => __DIR__ . '/../..' . '/app/ExpanseHeader.php',
         'App\\Gender' => __DIR__ . '/../..' . '/app/Gender.php',
+        'App\\Hostel' => __DIR__ . '/../..' . '/app/Hostel.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
         'App\\Http\\Controllers\\Admin\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AuthController.php',
         'App\\Http\\Controllers\\Admin\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoryController.php',
@@ -451,7 +452,9 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'App\\Http\\Controllers\\Admin\\ExpanseHeaderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ExpanseHeaderController.php',
         'App\\Http\\Controllers\\Admin\\RoomTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RoomTypeController.php',
         'App\\Http\\Controllers\\Admin\\RouteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RouteController.php',
+
         'App\\Http\\Controllers\\Admin\\SectionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SectionController.php',
+
         'App\\Http\\Controllers\\Admin\\SubjectController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SubjectController.php',
         'App\\Http\\Controllers\\Admin\\TransportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TransportController.php',
         'App\\Http\\Controllers\\Admin\\VehicleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/VehicleController.php',
@@ -480,7 +483,9 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'App\\RoomType' => __DIR__ . '/../..' . '/app/RoomType.php',
         'App\\Route' => __DIR__ . '/../..' . '/app/Route.php',
         'App\\RouteVehicle' => __DIR__ . '/../..' . '/app/RouteVehicle.php',
+
         'App\\Section' => __DIR__ . '/../..' . '/app/Section.php',
+
         'App\\Subject' => __DIR__ . '/../..' . '/app/Subject.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Vehicle' => __DIR__ . '/../..' . '/app/Vehicle.php',
