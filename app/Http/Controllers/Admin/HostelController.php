@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Hostel;
+use App\RoomType;
+use App\HostelRoom;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -148,4 +150,160 @@ class HostelController extends Controller
         );
         return Redirect()->back()->with($notification);
     }
+
+    // hostel room
+    public function hostelroom(){
+        $hostel=Hostel::where('status',1)->get();
+        $rooms=RoomType::where('status',1)->get();
+        $hostelroom=HostelRoom::OrderBy('id','DESC')->get();
+        return view('admin.hostel.hostelroom',compact('hostel','rooms','hostelroom'));
+    }
+
+    //Hostel Room submit
+    public function hostelroomstore(Request $request){
+        $insert=HostelRoom::insert([
+            'room_number'=>$request['room_number'],
+            'hostel_type'=>$request['hostel_type'],
+            'room_type'=>$request['room_type'],
+            'num_of_bed'=>$request['num_of_bed'],
+            'cost_per_bed'=>$request['cost_per_bed'],
+            'description'=>$request['description'],
+            'created_at'=>Carbon::now()->toDateTimeString(),
+        ]);
+        if($insert){
+             $notification = array(
+            'messege' => 'HostelRoom Insert successfully:)',
+            'alert-type' => 'success'
+            );
+        return Redirect()->back()->with($notification);
+        }else{
+             $notification = array(
+            'messege' => 'HostelRoom Insert Faild:)',
+            'alert-type' => 'error'
+        );
+        return Redirect()->back()->with($notification);
+        }
+    } 
+
+    // active
+    public function hostelroomactive($id){
+        $active=HostelRoom::where('id',$id)->update([
+            'status'=>'1',
+            'updated_at'=>Carbon::now()->toDateTimeString(),
+        ]);
+        if($active){
+            $notification = array(
+            'messege' => 'HostelRoom Active success',
+            'alert-type' => 'success'
+            );
+        return Redirect()->back()->with($notification);
+        }else{
+            $notification = array(
+            'messege' => 'HostelRoom Active Faild',
+            'alert-type' => 'error'
+            );
+        return Redirect()->back()->with($notification);
+        }
+    }
+    // deactive
+     public function hostelroomdeactive($id){
+        $deactive=HostelRoom::where('id',$id)->update([
+            'status'=>'0',
+            'updated_at'=>Carbon::now()->toDateTimeString(),
+        ]);
+        if($deactive){
+            $notification = array(
+            'messege' => 'HostelRoom DeActive success',
+            'alert-type' => 'success'
+            );
+        return Redirect()->back()->with($notification);
+        }else{
+            $notification = array(
+            'messege' => 'HostelRoom DeActive Faild',
+            'alert-type' => 'error'
+            );
+        return Redirect()->back()->with($notification);
+        }
+    }
+    // deleted
+    public function hostelroomdelete($id){
+        $delete=HostelRoom::where('id',$id)->delete();
+        if($delete){
+            $notification = array(
+            'messege' => 'HostelRoom Delete success',
+            'alert-type' => 'success'
+            );
+        return Redirect()->back()->with($notification);
+        }else{
+            $notification = array(
+            'messege' => 'HostelRoom Delete Faild',
+            'alert-type' => 'error'
+            );
+        return Redirect()->back()->with($notification);
+        }
+    }
+    // edit
+     public function hostelroomedit($id){
+
+        $data=HostelRoom::where('id',$id)->first();
+        return response()->json($data);
+       
+    }
+    // update
+    public function hostelroomupdate(Request $request){
+        $id=$request->id;
+        $update=HostelRoom::where('id',$id)->update([
+            'room_number'=>$request['room_number'],
+            'hostel_type'=>$request['hostel_type'],
+            'room_type'=>$request['room_type'],
+            'num_of_bed'=>$request['num_of_bed'],
+            'cost_per_bed'=>$request['cost_per_bed'],
+            'description'=>$request['description'],
+            'updated_at'=>Carbon::now()->toDateTimeString(),
+        ]);
+        if($update){
+            $notification = array(
+            'messege' => 'HostelRoom Update success',
+                'alert-type' => 'success'
+                );
+            return Redirect()->back()->with($notification);
+        }else{
+            $notification = array(
+                'messege' => 'HostelRoom Update Faild',
+                'alert-type' => 'error'
+                );
+            return Redirect()->back()->with($notification);
+        }
+
+    }
+
+    // room multidel
+    public function hostelroommultidel(Request $request){
+        $deleteid=$request->Input('delid');
+        //return $deleteid;
+         if($deleteid){
+             $delet=HostelRoom::whereIn('id',$deleteid)->delete();
+             if($delet){
+                 $notification=array(
+                    'messege'=>'success',
+                    'alert-type'=>'success'
+                     );
+                 return redirect()->back()->with($notification);
+             }else{
+                 $notification=array(
+                    'messege'=>'error',
+                    'alert-type'=>'error'
+                     );
+                 return redirect()->back()->with($notification);
+                }
+         }else{
+            $notification=array(
+                'messege'=>'Nothing To Delete',
+                'alert-type'=>'info'
+                 );
+             return redirect()->back()->with($notification);
+         }
+    }
+
+
 }
