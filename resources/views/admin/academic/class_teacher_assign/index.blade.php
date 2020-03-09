@@ -50,8 +50,8 @@
                                         <td>{{ $classSection->class->name }}</td>
                                         <td>{{ $classSection->section->name }}</td>
                                         <td class="text-left">
-                                            @foreach ($classSection->classSubjects as $classSubject)
-                                            <b>- {{ $classSubject->subject->name }}</b> <br/>
+                                            @foreach ($classSection->classTeachers as $classTeacher)
+                                            <b>- {{ $classSubject->classTeacher->name }}</b> <br/>
                                             @endforeach
                                         </td>
 
@@ -86,10 +86,9 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-            <form class="form-horizontal" action="{{ route('admin.academic.assign.subject.class') }}" method="POST">
+            <form class="form-horizontal" action="" method="POST">
                     @csrf
                     <div class="form-group row">
-
                         <div class="col-sm-12">
                             <label for="inputEmail3" class="col-form-label text-right">Class :</label>
                             <select required class="form-control select_class" name="class_id">
@@ -143,7 +142,7 @@
                 </button>
             </div>
             <div class="modal-body">
-            <form class="form-horizontal" action="{{ route('admin.academic.assign.subject.class.update') }}" method="POST"
+            <form class="form-horizontal" action="" method="POST"
                     enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
@@ -188,20 +187,10 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-       //Initialize Select2 Elements
-       $('.select2').select2()
-        //Initialize Select2 Elements
-    });
-
-</script>
-
-<script type="text/javascript">
-
-    $(document).ready(function () {
        $('.select_class').on('change', function () {
             var classId = $(this).val();
             $.ajax({
-                url:"{{ url('admin/academic/assign/subjects/get/sections/by/') }}"+"/"+classId,
+                url:"{{ url('admin/academic/assign/class/teacher/get/sections/by/') }}"+"/"+classId,
                 type:'get',
                 dataType:'json',
                 success:function(data){
@@ -218,19 +207,14 @@
 
 </script>
 
-<script>
-   function subjectInfo(classSectionId){
-    var class_section_id = classSectionId;
-    $('#class_section_id').val(class_section_id);
-    $.ajax({
-        url:"{{ url('admin/academic/assign/subjects/get/assigned/subject') }}"+"/"+class_section_id,
-        type:'get',
-        success:function(data){
-            $('.subjects').empty();
-            $('.subjects').append(data);
-        }
+<script type="text/javascript">
+
+    $(document).ready(function () {
+       //Initialize Select2 Elements
+       $('.select2').select2()
+        //Initialize Select2 Elements
     });
-   }
+
 </script>
 
 @endpush

@@ -11,16 +11,23 @@ return array(
     'App\\Category' => $baseDir . '/app/Category.php',
     'App\\ClassSection' => $baseDir . '/app/ClassSection.php',
     'App\\ClassSubject' => $baseDir . '/app/ClassSubject.php',
+    'App\\ClassTeacher' => $baseDir . '/app/ClassTeacher.php',
     'App\\Classes' => $baseDir . '/app/Classes.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Designation' => $baseDir . '/app/Designation.php',
+    'App\\Employee' => $baseDir . '/app/Employee.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Expanse' => $baseDir . '/app/Expanse.php',
     'App\\ExpanseHeader' => $baseDir . '/app/ExpanseHeader.php',
     'App\\Gender' => $baseDir . '/app/Gender.php',
+    'App\\Group' => $baseDir . '/app/Group.php',
     'App\\Hostel' => $baseDir . '/app/Hostel.php',
+
     'App\\HostelRoom' => $baseDir . '/app/HostelRoom.php',
+
     'App\\Http\\Controllers\\Admin\\AcademicAssignController' => $baseDir . '/app/Http/Controllers/Admin/AcademicAssignController.php',
     'App\\Http\\Controllers\\Admin\\AdminController' => $baseDir . '/app/Http/Controllers/Admin/AdminController.php',
+    'App\\Http\\Controllers\\Admin\\AssignClassTeacherController' => $baseDir . '/app/Http/Controllers/Admin/AssignClassTeacherController.php',
     'App\\Http\\Controllers\\Admin\\AuthController' => $baseDir . '/app/Http/Controllers/Admin/AuthController.php',
     'App\\Http\\Controllers\\Admin\\CategoryController' => $baseDir . '/app/Http/Controllers/Admin/CategoryController.php',
     'App\\Http\\Controllers\\Admin\\ClassController' => $baseDir . '/app/Http/Controllers/Admin/ClassController.php',
@@ -30,7 +37,9 @@ return array(
     'App\\Http\\Controllers\\Admin\\RoomTypeController' => $baseDir . '/app/Http/Controllers/Admin/RoomTypeController.php',
     'App\\Http\\Controllers\\Admin\\RouteController' => $baseDir . '/app/Http/Controllers/Admin/RouteController.php',
     'App\\Http\\Controllers\\Admin\\SectionController' => $baseDir . '/app/Http/Controllers/Admin/SectionController.php',
+
     'App\\Http\\Controllers\\Admin\\StudentAdmissionController' => $baseDir . '/app/Http/Controllers/Admin/StudentAdmissionController.php',
+
     'App\\Http\\Controllers\\Admin\\SubjectController' => $baseDir . '/app/Http/Controllers/Admin/SubjectController.php',
     'App\\Http\\Controllers\\Admin\\TransportController' => $baseDir . '/app/Http/Controllers/Admin/TransportController.php',
     'App\\Http\\Controllers\\Admin\\VehicleController' => $baseDir . '/app/Http/Controllers/Admin/VehicleController.php',

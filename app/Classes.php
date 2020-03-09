@@ -10,6 +10,7 @@ class Classes extends Model
 {
     protected $guarded = [];
     //protected $table = 'classes';
+    protected $hidden = ['created_at', 'updated_at'];
 
     public function classSections()
     {

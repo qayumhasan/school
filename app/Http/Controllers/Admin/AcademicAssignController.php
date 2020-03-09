@@ -16,8 +16,11 @@ class AcademicAssignController extends Controller
     {
         $formClasses = Classes::where('status', 1)->get();
         $formSubjects = Subject::where('status', 1)->get();
+        $classSections = ClassSection::with(['class', 'section', 'classSubjects', 'classSubjects.subject'])
+            ->where('is_assigned_subject', 1)
+            ->get();
 
-        return view('admin.academic.subject_assign.index', compact('formClasses', 'formSubjects'));
+        return view('admin.academic.subject_assign.index', compact('formClasses', 'formSubjects', 'classSections'));
     }
 
     public function subjectAssign(Request $request)
@@ -27,13 +30,27 @@ class AcademicAssignController extends Controller
             'section_id' => 'required',
         ]);
 
-        foreach ($request->subject_ids as $subjectId ) {
+        $ClassSection = ClassSection::where('class_id', $request->class_id)
+            ->where('section_id', $request->section_id)
+            ->select(['id', 'is_assigned_subject'])
+            ->first();
+
+        if ($ClassSection->is_assigned_subject == 1) {
+            $notification = array(
+                'messege' => 'Subjects has already been assigned in this class and section :)',
+                'alert-type' => 'error'
+            );
+            return Redirect()->back()->with($notification);
+        }
+
+        foreach ($request->subject_ids as $subjectId) {
             $assignSubject = new ClassSubject();
-            $assignSubject->class_id = $request->class_id;
-            $assignSubject->section_id = $request->section_id;
+            $assignSubject->class_section_id = $ClassSection->id;
             $assignSubject->subject_id = $subjectId;
             $assignSubject->save();
         }
+        $ClassSection->is_assigned_subject = 1;
+        $ClassSection->save();
 
         $notification = array(
             'messege' => 'Subjects assigned successfully:)',
@@ -46,5 +63,51 @@ class AcademicAssignController extends Controller
     {
         $classSections = ClassSection::with(['section'])->where('class_id', $classId)->get();
         return response()->json($classSections);
+    }
+
+    public function subjectAssignUpdate(Request $request)
+    {
+        $classSubjects = ClassSubject::where('class_section_id', $request->class_section_id)->get();
+
+        foreach ($classSubjects as $value) {
+            $value->delete();
+        }
+
+        foreach ($request->subject_ids as $subjectId) {
+            $assignSubject = new ClassSubject();
+            $assignSubject->class_section_id = $request->class_section_id;
+            $assignSubject->subject_id = $subjectId;
+            $assignSubject->save();
+        }
+
+        $notification = array(
+            'messege' => 'assigned Subjects updated successfully:)',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+
+    public function getAssignedSubjectByAjax($classSectionId)
+    {
+        $classSubjects = ClassSubject::where('class_section_id', $classSectionId)->get();
+        $subjects = Subject::where('status', 1)->where('is_deleted', 0)->latest()->get();
+
+        return view('admin.academic.subject_assign.ajax_blade.get_assigned_subjects', compact('subjects', 'classSubjects'));
+    }
+
+    public function subjectAssignDelete($classSectionId)
+    {
+        $classSection = ClassSection::with(['classSubjects'])->where('id', $classSectionId)->first();
+        $classSection->is_assigned_subject = 0;
+        $classSection->save();
+        foreach ($classSection->classSubjects as $classSubject) {
+            $classSubject->delete();
+        }
+
+        $notification = array(
+            'messege' => 'assigned Subjects deleted successfully:)',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
     }
 }

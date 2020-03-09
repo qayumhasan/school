@@ -25,7 +25,7 @@ class ExpanseHeaderController extends Controller
         $addClass->save();
 
         $notification = array(
-            'messege' => 'Class inserted successfully:)',
+            'messege' => 'Expanse header inserted successfully:)',
             'alert-type' => 'success'
         );
         return Redirect()->back()->with($notification);
@@ -51,6 +51,23 @@ class ExpanseHeaderController extends Controller
             );
             return Redirect()->back()->with($notification);
         }
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|unique:expanse_headers,name,'.$request->id
+        ]);
+        $addClass =  ExpanseHeader::where('id', $request->id)->first();
+        $addClass->name = $request->name;
+        $addClass->note = $request->note;
+        $addClass->save();
+
+        $notification = array(
+            'messege' => 'Expanse header update successfully:)',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
     }
 
     public function delete($headerId)
@@ -83,7 +100,7 @@ class ExpanseHeaderController extends Controller
         return Redirect()->back()->with($notification);
     }
 
-    
+
 
     public function getHeaderByAjax($headerId)
     {

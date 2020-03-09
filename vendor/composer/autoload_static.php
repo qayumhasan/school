@@ -437,16 +437,23 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\ClassSection' => __DIR__ . '/../..' . '/app/ClassSection.php',
         'App\\ClassSubject' => __DIR__ . '/../..' . '/app/ClassSubject.php',
+        'App\\ClassTeacher' => __DIR__ . '/../..' . '/app/ClassTeacher.php',
         'App\\Classes' => __DIR__ . '/../..' . '/app/Classes.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Designation' => __DIR__ . '/../..' . '/app/Designation.php',
+        'App\\Employee' => __DIR__ . '/../..' . '/app/Employee.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Expanse' => __DIR__ . '/../..' . '/app/Expanse.php',
         'App\\ExpanseHeader' => __DIR__ . '/../..' . '/app/ExpanseHeader.php',
         'App\\Gender' => __DIR__ . '/../..' . '/app/Gender.php',
+        'App\\Group' => __DIR__ . '/../..' . '/app/Group.php',
         'App\\Hostel' => __DIR__ . '/../..' . '/app/Hostel.php',
+
         'App\\HostelRoom' => __DIR__ . '/../..' . '/app/HostelRoom.php',
+
         'App\\Http\\Controllers\\Admin\\AcademicAssignController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AcademicAssignController.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
+        'App\\Http\\Controllers\\Admin\\AssignClassTeacherController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AssignClassTeacherController.php',
         'App\\Http\\Controllers\\Admin\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AuthController.php',
         'App\\Http\\Controllers\\Admin\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CategoryController.php',
         'App\\Http\\Controllers\\Admin\\ClassController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ClassController.php',
@@ -456,7 +463,9 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'App\\Http\\Controllers\\Admin\\RoomTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RoomTypeController.php',
         'App\\Http\\Controllers\\Admin\\RouteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RouteController.php',
         'App\\Http\\Controllers\\Admin\\SectionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SectionController.php',
+
         'App\\Http\\Controllers\\Admin\\StudentAdmissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/StudentAdmissionController.php',
+
         'App\\Http\\Controllers\\Admin\\SubjectController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SubjectController.php',
         'App\\Http\\Controllers\\Admin\\TransportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TransportController.php',
         'App\\Http\\Controllers\\Admin\\VehicleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/VehicleController.php',

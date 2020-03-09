@@ -103,10 +103,19 @@ Route::group(['prefix' => 'admin/academic', 'namespace' => 'admin', 'middleware'
 
     Route::group(['prefix' => 'assign/subjects'], function () {
         Route::get('/', 'AcademicAssignController@allAssignedSubject')->name('admin.academic.assign.all.assigned.subject');
-        Route::post('subject/assign', 'AcademicAssignController@subjectAssign')->name('admin.academic.assign.subject.class');
+        Route::post('assign', 'AcademicAssignController@subjectAssign')->name('admin.academic.assign.subject.class');
+        Route::patch('update', 'AcademicAssignController@subjectAssignUpdate')->name('admin.academic.assign.subject.class.update');
+        Route::get('delete/{classSectionId}', 'AcademicAssignController@subjectAssignDelete')->name('admin.academic.assign.subject.class.delete');
 
         // Ajax Routes
         Route::get('get/sections/by/{classId}', 'AcademicAssignController@getSectionByAjax');
+        Route::get('get/assigned/subject/{classSectionId}', 'AcademicAssignController@getAssignedSubjectByAjax');
+
+    });
+
+    Route::group(['prefix' => 'assign/class/teachers'], function () {
+        
+        Route::get('/', 'AssignClassTeacherController@index')->name('academic.assign.class.teacher.index');
     });
 
 });
@@ -190,6 +199,7 @@ Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
     Route::post('/hostel/multidelete','HostelController@hostelMultiDelete')->name('hostel.multidelete');
     Route::get('/delete/{id}','HostelController@destroy')->name('hostel.destroy');
 
+
     Route::get('/add/room/','HostelController@hostelroom')->name('hostel.addroom');
     Route::post('/submit/room/','HostelController@hostelroomstore')->name('hostelroom.store');
     Route::get('/hostelroom/active/{id}','HostelController@hostelroomactive');
@@ -204,7 +214,7 @@ Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
 
 
 
-    
+
 
     Route::group(['prefix'=>'room/type'],function(){
         Route::get('/','RoomTypeController@index')->name('room.type');
