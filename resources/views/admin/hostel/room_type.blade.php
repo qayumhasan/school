@@ -7,13 +7,13 @@
         <div class="row">
                     <div class="col-md-6">
                         <div class="panel_title">
-                            <span class="panel_icon"><i class="fas fa-border-all"></i></span><span>Hostel Type List</span>
+                            <span class="panel_icon"><i class="fas fa-border-all"></i></span><span>Room Type List</span>
                         </div>
                     </div>
                     <div class="col-md-6 text-right">
                         <div class="panel_title">
                             <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal1"><i
-                                    class="fas fa-plus"></i></span> <span>Add Hostel Type</span></a>
+                                    class="fas fa-plus"></i></span> <span>Add Room Type</span></a>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Add Route</h4>
+                <h4 class="modal-title">Add Room Type</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -128,7 +128,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Route</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Room Type</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

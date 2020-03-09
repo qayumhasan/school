@@ -189,6 +189,21 @@ Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
     Route::get('/status/update/{id}','HostelController@statusUpdate')->name('hostel.status.update');
     Route::post('/hostel/multidelete','HostelController@hostelMultiDelete')->name('hostel.multidelete');
     Route::get('/delete/{id}','HostelController@destroy')->name('hostel.destroy');
+
+    Route::get('/add/room/','HostelController@hostelroom')->name('hostel.addroom');
+    Route::post('/submit/room/','HostelController@hostelroomstore')->name('hostelroom.store');
+    Route::get('/hostelroom/active/{id}','HostelController@hostelroomactive');
+    Route::get('/hostelroom/deactive/{id}','HostelController@hostelroomdeactive');
+    Route::get('/hostelroom/delete/{id}','HostelController@hostelroomdelete');
+    Route::get('/hostelroom/edit/{id}','HostelController@hostelroomedit');
+    Route::post('/hostelroom/update','HostelController@hostelroomupdate')->name('hostelroom.update');
+    Route::post('/hostelroom/multidelete','HostelController@hostelroommultidel')->name('hostelroom.multidelete');
+    
+
+
+
+
+
     
 
     Route::group(['prefix'=>'room/type'],function(){
@@ -204,5 +219,16 @@ Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
 
 });
 // Hostel area end
+// asif route start
+
+Route::group(['prefix' => 'admin/student', 'namespace' => 'Admin'], function () {
+
+    Route::get('/create', 'StudentAdmissionController@create')->name('student.create');
+    Route::get('/section/all/{id}', 'StudentAdmissionController@getsection');
+    Route::get('/route/{id}', 'StudentAdmissionController@getbus');
+    Route::get('/get/hostel/{id}','StudentAdmissionController@getroom');
+
+});
+
 
 Auth::routes();
