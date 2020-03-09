@@ -23,10 +23,10 @@
                 <ul class="dashboard-menu">
                     <li>
                         <a href="{{ route('admin.class.index') }}"> Class</a>
-                        <a href=""> Asign teacher to class</a>
+                        <a href="{{ route('academic.assign.class.teacher.index') }}"> Asign class teacher</a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.academic.assign.all.assigned.subject') }}"> Subject </a>
+                        <a href="{{ route('admin.academic.subject.index') }}"> Subject </a>
                         <a href="{{ route('admin.academic.assign.all.assigned.subject') }}"> Asign subject to class</a>
                     </li>
                     <li>

@@ -33,9 +33,9 @@
 
 <body id="page-top">
     <!-- preloader -->
-    {{-- <div class="preloader">
+    <div class="preloader">
         <img src="{{asset('public/admins/images/preloader.gif')}}" alt="">
-    </div> --}}
+    </div>
     <!-- wrapper -->
     <div class="wrapper">
 
@@ -108,6 +108,7 @@
 
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
     <script>
         @if (Session:: has('messege'))
         var type = "{{Session::get('alert-type','info')}}"
