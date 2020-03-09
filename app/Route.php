@@ -9,6 +9,11 @@ class Route extends Model
 {
     protected $guarded = [];
 
+    public function vehicle()
+    {
+        return $this->hasMany(Vehicle::class);
+    }
+
     public function routeVehicles()
     {
         return $this->hasMany(RouteVehicle::class);
