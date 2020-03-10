@@ -20,8 +20,8 @@ class CreateClassTeachersTable extends Migration
             $table->boolean('status')->default(1);
             $table->boolean('is_deleted')->default(0);
             $table->timestamps();
-            $table->foreign('class_section_id')->references('id')->on('class_sections')->onDelete('cascade');
-            $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
+            // $table->foreign('class_section_id')->references('id')->on('class_sections')->onDelete('cascade');
+            // $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
         });
     }
 

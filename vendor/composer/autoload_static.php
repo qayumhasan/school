@@ -448,9 +448,7 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'App\\Gender' => __DIR__ . '/../..' . '/app/Gender.php',
         'App\\Group' => __DIR__ . '/../..' . '/app/Group.php',
         'App\\Hostel' => __DIR__ . '/../..' . '/app/Hostel.php',
-
         'App\\HostelRoom' => __DIR__ . '/../..' . '/app/HostelRoom.php',
-
         'App\\Http\\Controllers\\Admin\\AcademicAssignController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AcademicAssignController.php',
         'App\\Http\\Controllers\\Admin\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AdminController.php',
         'App\\Http\\Controllers\\Admin\\AssignClassTeacherController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/AssignClassTeacherController.php',
@@ -460,12 +458,11 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'App\\Http\\Controllers\\Admin\\ExpanseController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ExpanseController.php',
         'App\\Http\\Controllers\\Admin\\ExpanseHeaderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ExpanseHeaderController.php',
         'App\\Http\\Controllers\\Admin\\HostelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/HostelController.php',
+        'App\\Http\\Controllers\\Admin\\InventoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/InventoryController.php',
         'App\\Http\\Controllers\\Admin\\RoomTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RoomTypeController.php',
         'App\\Http\\Controllers\\Admin\\RouteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RouteController.php',
         'App\\Http\\Controllers\\Admin\\SectionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SectionController.php',
-
         'App\\Http\\Controllers\\Admin\\StudentAdmissionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/StudentAdmissionController.php',
-
         'App\\Http\\Controllers\\Admin\\SubjectController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SubjectController.php',
         'App\\Http\\Controllers\\Admin\\TransportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TransportController.php',
         'App\\Http\\Controllers\\Admin\\VehicleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/VehicleController.php',
@@ -485,6 +482,7 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\InventoryCategory' => __DIR__ . '/../..' . '/app/InventoryCategory.php',
         'App\\Menu' => __DIR__ . '/../..' . '/app/Menu.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

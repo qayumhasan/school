@@ -104,6 +104,23 @@
 
             <!-- Hostel area end -->
 
+             <!-- Hostel area start -->
+
+             <li class="single-nav-wrapper">
+                <a class="has-arrow menu-item" href="#" aria-expanded="false">
+                    <span class="left-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="menu-text">Inventory</span>
+                </a>
+                <ul class="dashboard-menu">
+                    <li><a href="{{route('category.index')}}">Category</a></li>
+                    <li><a href="{{route('room.type')}}">Room Type</a></li>
+                    <li><a href="{{route('admin.hostel')}}">Hostel</a></li>
+                    <li><a href="chart-float.html">Student Hostel Report</a></li>
+                </ul>
+            </li>
+
+            <!-- Hostel area end -->
+
 
 
 
