@@ -22,9 +22,7 @@ return array(
     'App\\Gender' => $baseDir . '/app/Gender.php',
     'App\\Group' => $baseDir . '/app/Group.php',
     'App\\Hostel' => $baseDir . '/app/Hostel.php',
-
     'App\\HostelRoom' => $baseDir . '/app/HostelRoom.php',
-
     'App\\Http\\Controllers\\Admin\\AcademicAssignController' => $baseDir . '/app/Http/Controllers/Admin/AcademicAssignController.php',
     'App\\Http\\Controllers\\Admin\\AdminController' => $baseDir . '/app/Http/Controllers/Admin/AdminController.php',
     'App\\Http\\Controllers\\Admin\\AssignClassTeacherController' => $baseDir . '/app/Http/Controllers/Admin/AssignClassTeacherController.php',
@@ -34,12 +32,11 @@ return array(
     'App\\Http\\Controllers\\Admin\\ExpanseController' => $baseDir . '/app/Http/Controllers/Admin/ExpanseController.php',
     'App\\Http\\Controllers\\Admin\\ExpanseHeaderController' => $baseDir . '/app/Http/Controllers/Admin/ExpanseHeaderController.php',
     'App\\Http\\Controllers\\Admin\\HostelController' => $baseDir . '/app/Http/Controllers/Admin/HostelController.php',
+    'App\\Http\\Controllers\\Admin\\InventoryController' => $baseDir . '/app/Http/Controllers/Admin/InventoryController.php',
     'App\\Http\\Controllers\\Admin\\RoomTypeController' => $baseDir . '/app/Http/Controllers/Admin/RoomTypeController.php',
     'App\\Http\\Controllers\\Admin\\RouteController' => $baseDir . '/app/Http/Controllers/Admin/RouteController.php',
     'App\\Http\\Controllers\\Admin\\SectionController' => $baseDir . '/app/Http/Controllers/Admin/SectionController.php',
-
     'App\\Http\\Controllers\\Admin\\StudentAdmissionController' => $baseDir . '/app/Http/Controllers/Admin/StudentAdmissionController.php',
-
     'App\\Http\\Controllers\\Admin\\SubjectController' => $baseDir . '/app/Http/Controllers/Admin/SubjectController.php',
     'App\\Http\\Controllers\\Admin\\TransportController' => $baseDir . '/app/Http/Controllers/Admin/TransportController.php',
     'App\\Http\\Controllers\\Admin\\VehicleController' => $baseDir . '/app/Http/Controllers/Admin/VehicleController.php',
@@ -59,6 +56,7 @@ return array(
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\InventoryCategory' => $baseDir . '/app/InventoryCategory.php',
     'App\\Menu' => $baseDir . '/app/Menu.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

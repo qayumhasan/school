@@ -229,7 +229,7 @@ Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
 
 });
 // Hostel area end
-// asif route start
+
 
 Route::group(['prefix' => 'admin/student', 'namespace' => 'Admin'], function () {
 
@@ -239,6 +239,21 @@ Route::group(['prefix' => 'admin/student', 'namespace' => 'Admin'], function () 
     Route::get('/get/hostel/{id}','StudentAdmissionController@getroom');
 
 });
+
+// Inventory area start
+Route::group(['prefix'=>'admin/inventory','namespace'=>'Admin'],function(){
+    Route::group(['prefix'=>'category'],function(){
+        Route::get('/','InventoryController@categoryIndex')->name('category.index');
+        Route::post('/store','InventoryController@categoryStore')->name('category.store');
+        Route::get('/edit/{id}','InventoryController@categoryEdit');
+        Route::patch('/update','InventoryController@categoryUpdate')->name('inventory.category.update');
+        Route::get('/delete/{id}','InventoryController@categoryDelete')->name('inventory.category.delete');
+        Route::post('/category/multidelete','InventoryController@categoryMultiDelete')->name('inventory.category.multidelete');
+    });
+   
+});
+// Inventory area end
+
 
 
 Auth::routes();
