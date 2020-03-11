@@ -17,9 +17,10 @@
                     <li>
                         <a href="{{ route('student.create') }}"> Student Admission</a>
                     </li>
-                 
+
                 </ul>
             </li>
+            
             <li class="single-nav-wrapper">
                 <a href="{{ route('category.index') }}" class="menu-item">
                     <span class="left-icon"><i class="fas fa-home"></i></span>

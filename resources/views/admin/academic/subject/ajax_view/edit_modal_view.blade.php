@@ -3,6 +3,7 @@
     @method('PATCH')
     <div class="form-group row">
         <div class="col-sm-12">
+            <label for="">Subjcet Name</label>
             <input  type="text" class="form-control" id="name"  value="{{ $subject->name }}" name="name" required>
         </div>
     </div>
@@ -19,7 +20,6 @@
 
     <div class="form-group row">
         <div class="col-sm-12">
-            Subject Type
             <label for="code"> Subject Code: </label>
             <input  type="text" class="form-control" id="code"  value="{{ $subject->code }}" name="code" required>
         </div>

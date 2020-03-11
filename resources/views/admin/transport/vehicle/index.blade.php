@@ -76,7 +76,8 @@
                                             <i class="fas fa-thumbs-down"></i>
                                         </a>
                                         @endif
-                                    | <a href="{{ route('admin.vehicle.edit', $vehicle->id) }}" class="edit_vehicle btn btn-sm btn-blue text-white">
+                                    | <a data-id="{{ $vehicle->id }}" title="edit" data-toggle="modal"
+                                        data-target="#editModal" class="edit_vehicle btn btn-sm btn-blue text-white">
                                             <i class="fas fa-pencil-alt"></i>
                                             </a> |
                                         <a id="delete" href="{{ route('admin.vehicle.delete', $vehicle->id) }}"
@@ -157,6 +158,24 @@
 </div>
 
 
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content edit_content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Vehicle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body edit_modal_body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @endsection
 
 @push('js')
@@ -176,6 +195,22 @@
 
     });
 
+</script>
+
+<script>
+    $(document).ready(function () {
+       $(document).on('click', '.edit_vehicle', function(){
+           var vehicle_id = $(this).data('id');
+           $.ajax({
+               url:"{{ url('admin/transport/vehicles/edit/') }}" + "/" + vehicle_id,
+               type:'get',
+               success:function(data){
+                   $('.edit_modal_body').empty();
+                   $('.edit_modal_body').append(data);
+               }
+           });
+       });
+   });
 </script>
 
 

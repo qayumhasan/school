@@ -59,7 +59,8 @@
                                         </td>
 
                                         <td>
-                                        <a href="{{ route('admin.assign.vehicle.edit', $assignedRoute->id) }}" class="edit_route btn btn-sm btn-blue text-white"><i class="fas fa-pencil-alt"></i></a> |
+                                        <a href="#" class="edit_assigned_route btn btn-sm btn-blue text-white" data-id="{{ $assignedRoute->id }}" title="edit" data-toggle="modal"
+                                            data-target="#editModal"><i class="fas fa-pencil-alt"></i></a> |
                                         <a id="delete" href="{{ route('admin.assign.vehicle.delete', $assignedRoute->id) }}"
                                                 class="btn btn-danger btn-sm text-white" title="Delete">
                                                 <i class="far fa-trash-alt"></i>
@@ -124,6 +125,24 @@
 </div>
 
 
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content edit_content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Assigned Vehicle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body edit_modal_body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @endsection
 
 @push('js')
@@ -143,6 +162,7 @@
     });
 
 </script>
+
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -150,6 +170,22 @@
        $('.select2').select2()
         //Initialize Select2 Elements
     });
+</script>
+
+<script>
+    $(document).ready(function () {
+       $(document).on('click', '.edit_assigned_route', function(){
+           var route_id = $(this).data('id');
+           $.ajax({
+               url:"{{ url('admin/transport/assign/vehicle/edit/') }}" + "/" + route_id,
+               type:'get',
+               success:function(data){
+                   $('.edit_modal_body').empty();
+                   $('.edit_modal_body').append(data);
+               }
+           });
+       });
+   });
 </script>
 
 @endpush

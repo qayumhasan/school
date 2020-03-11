@@ -37,10 +37,10 @@ class VehicleController extends Controller
         return Redirect()->back()->with($notification);
     }
 
-    public function edit($vehicleId)
+    public function getVehicleByAjax($vehicleId)
     {
         $vehicle = Vehicle::where('id', $vehicleId)->firstOrFail();
-        return view('admin.transport.vehicle.edit', compact('vehicle'));
+        return view('admin.transport.vehicle.ajax_view.edit_modal_view', compact('vehicle'));
     }
 
     public function update(Request $request, $vehicleId)
