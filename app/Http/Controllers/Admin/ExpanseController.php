@@ -51,11 +51,11 @@ class ExpanseController extends Controller
         return Redirect()->back()->with($notification);
     }
 
-    public function edit($expanseId)
+    public function getExpanseByAjax($expanseId)
     {
         $expanse = Expanse::with('ExpanseHeader')->where('id', $expanseId)->firstOrFail();
         $headers = ExpanseHeader::select(['id', 'name'])->latest()->get();
-        return view('admin.expanse.edit', compact('expanse', 'headers'));
+        return view('admin.expanse.ajax_view.edit_modal_view', compact('expanse', 'headers'));
     }
 
     public function update(Request $request, $expanseId)
@@ -140,7 +140,7 @@ class ExpanseController extends Controller
     {
         date_default_timezone_set('Asia/Dhaka');
         $searchExpanses = Expanse::where('year', $request->year)->where('date', date('d/m/Y', strtotime($request->date)))->get();
-        
+
        return view('admin.expanse.search_expanse', compact('searchExpanses'));
     }
 

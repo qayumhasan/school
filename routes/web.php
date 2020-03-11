@@ -39,7 +39,6 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
 });
 
 
-
 Route::group(['prefix' => 'admin/category', 'namespace' => 'Admin', 'middleware' => 'auth:admin'], function () {
 
     Route::get('/', 'CategoryController@index')->name('category.index');
@@ -65,8 +64,6 @@ Route::group(['prefix' => 'admin/academic', 'namespace' => 'admin', 'middleware'
         Route::post('store', 'ClassController@store')->name('admin.class.store');
 
         Route::patch('update/{classId}', 'ClassController@update')->name('admin.class.update');
-
-
 
         Route::get('status/change/{classId}', 'ClassController@changeStatus')->name('admin.class.status.update');
         Route::get('soft/delete/{classId}', 'ClassController@softDelete')->name('admin.class.soft.delete');
@@ -145,20 +142,26 @@ Route::group(['prefix' => 'admin/transport', 'namespace' => 'Admin', 'middleware
     Route::group(['prefix' => 'vehicles'], function () {
         Route::get('/', 'VehicleController@index')->name('admin.vehicle.index');
         Route::post('store', 'VehicleController@store')->name('admin.vehicle.store');
-        Route::get('edit/{vehicleId}', 'VehicleController@edit')->name('admin.vehicle.edit');
-        Route::post('update/{vehicleId}', 'VehicleController@update')->name('admin.vehicle.update');
+       // Route::get('edit/{vehicleId}', 'VehicleController@edit')->name('admin.vehicle.edit');
+        Route::patch('update/{vehicleId}', 'VehicleController@update')->name('admin.vehicle.update');
         Route::get('delete/{vehicleId}', 'VehicleController@delete')->name('admin.vehicle.delete');
         Route::get('status/update/{vehicleId}', 'VehicleController@statusUpdate')->name('admin.route.status.update');
         Route::post('multiple/delete', 'VehicleController@multipleDelete')->name('admin.vehicle.multiple.delete');
+
+        // Ajax Route
+        Route::get('edit/{vehicleId}', 'VehicleController@getVehicleByAjax');
     });
 
     Route::group(['prefix' => 'assign/vehicle'], function () {
         Route::get('/', 'TransportController@index')->name('admin.assign.vehicle.index');
         Route::post('store', 'TransportController@store')->name('admin.assign.vehicle.store');
         Route::get('edit/{routeId}', 'TransportController@edit')->name('admin.assign.vehicle.edit');
-        Route::post('update/{routeId}', 'TransportController@update')->name('admin.assign.vehicle.update');
+        Route::patch('update/{routeId}', 'TransportController@update')->name('admin.assign.vehicle.update');
         Route::get('delete/{routeId}', 'TransportController@delete')->name('admin.assign.vehicle.delete');
         Route::post('multiple/delete', 'TransportController@multipleDelete')->name('admin.assign.vehicle.multiple.delete');
+
+        // Ajax route
+        Route::get('edit/{routeId}', 'TransportController@getAssignedRouteByAjax');
     });
 
 });
@@ -170,12 +173,15 @@ Route::group(['prefix' => 'admin/expanses', 'middleware' => 'auth:admin', 'names
         Route::get('all', 'ExpanseController@index')->name('admin.expanse.index');
         Route::post('store', 'ExpanseController@store')->name('admin.expanse.store');
         Route::get('edit/{expanseId}', 'ExpanseController@edit')->name('admin.expanse.edit');
-        Route::post('update/{expanseId}', 'ExpanseController@update')->name('admin.expanse.update');
+        Route::patch('update/{expanseId}', 'ExpanseController@update')->name('admin.expanse.update');
         Route::get('status/change/{expanseId}', 'ExpanseController@statusChange')->name('admin.expanse.status.update');
         Route::get('delete/{expanseId}', 'ExpanseController@delete')->name('admin.expanse.delete');
         Route::post('multiple/delete', 'ExpanseController@multipleDelete')->name('admin.expanse.multiple.delete');
         Route::get('search', 'ExpanseController@search')->name('admin.expanse.search');
         Route::get('search/action', 'ExpanseController@searchAction')->name('admin.expanse.search.action');
+
+        //Ajax route
+        Route::get('edit/{expanseId}', 'ExpanseController@getExpanseByAjax');
 
     });
 
@@ -207,7 +213,6 @@ Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
     Route::post('/hostel/multidelete','HostelController@hostelMultiDelete')->name('hostel.multidelete');
     Route::get('/delete/{id}','HostelController@destroy')->name('hostel.destroy');
 
-
     Route::get('/add/room/','HostelController@hostelroom')->name('hostel.addroom');
     Route::post('/submit/room/','HostelController@hostelroomstore')->name('hostelroom.store');
     Route::get('/hostelroom/active/{id}','HostelController@hostelroomactive');
@@ -217,13 +222,6 @@ Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
     Route::post('/hostelroom/update','HostelController@hostelroomupdate')->name('hostelroom.update');
     Route::post('/hostelroom/multidelete','HostelController@hostelroommultidel')->name('hostelroom.multidelete');
 
-
-
-
-
-
-
-
     Route::group(['prefix'=>'room/type'],function(){
         Route::get('/','RoomTypeController@index')->name('room.type');
         Route::post('/store','RoomTypeController@store')->name('hostel.room.type.store');
@@ -232,9 +230,7 @@ Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
         Route::post('/multidelete','RoomTypeController@multipleDelete')->name('room.type.multidelete');
         Route::get('/status/update/{id}','RoomTypeController@changeStatus')->name('room.type.status.update');
         Route::get('/delete/{id}','RoomTypeController@destroy')->name('room.type.delete');
-
     });
-
 });
 // Hostel area end
 
@@ -245,20 +241,18 @@ Route::group(['prefix' => 'admin/student', 'namespace' => 'Admin'], function () 
     Route::get('/section/all/{id}', 'StudentAdmissionController@getsection');
     Route::get('/route/{id}', 'StudentAdmissionController@getbus');
     Route::get('/get/hostel/{id}','StudentAdmissionController@getroom');
-
 });
 
 // Inventory area start
 Route::group(['prefix'=>'admin/inventory','namespace'=>'Admin'],function(){
     Route::group(['prefix'=>'category'],function(){
-        Route::get('/','InventoryController@categoryIndex')->name('category.index');
+        Route::get('/','InventoryController@categoryIndex')->name('inventory.category.index');
         Route::post('/store','InventoryController@categoryStore')->name('category.store');
         Route::get('/edit/{id}','InventoryController@categoryEdit');
         Route::patch('/update','InventoryController@categoryUpdate')->name('inventory.category.update');
         Route::get('/delete/{id}','InventoryController@categoryDelete')->name('inventory.category.delete');
         Route::post('/category/multidelete','InventoryController@categoryMultiDelete')->name('inventory.category.multidelete');
     });
-   
 });
 // Inventory area end
 

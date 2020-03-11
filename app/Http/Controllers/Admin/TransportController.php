@@ -28,7 +28,7 @@ class TransportController extends Controller
 
     public function store(Request $request)
     {
-        
+
         $this->validate($request, [
             'route_id' => 'required',
             'vehicle_ids' => 'required',
@@ -50,12 +50,12 @@ class TransportController extends Controller
         return Redirect()->back()->with($notification);
     }
 
-    public function edit($routeId)
+    public function getAssignedRouteByAjax($routeId)
     {
         $route = Route::with(['routeVehicles'])->where('id', $routeId)->first();
         $vehicles = Vehicle::where('status', 1)->get();
 
-        return view('admin.transport.assign_vehicle.edit', compact('route', 'vehicles'));
+        return view('admin.transport.assign_vehicle.ajax_view.edit_modal_view', compact('route', 'vehicles'));
     }
 
     public function update(Request $request, $routeId)
