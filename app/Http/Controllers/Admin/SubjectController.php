@@ -39,7 +39,7 @@ class SubjectController extends Controller
     public function edit($subjectId)
     {
         $subject = Subject::where('id', $subjectId)->firstOrFail();
-        return view('admin.academic.subject.edit', compact('subject'));
+        return view('admin.academic.subject.ajax_view.edit_modal_view', compact('subject'));
     }
 
     public function update(Request $request, $subjectId)

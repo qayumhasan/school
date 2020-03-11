@@ -4,9 +4,7 @@
 @push('css')
 <style>
 
-.edit_content {
-    margin-top: 18rem;
-}
+
 
 </style>
 @endpush
