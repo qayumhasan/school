@@ -81,12 +81,12 @@
                                             <i class="fas fa-thumbs-down"></i>
                                         </a>
                                         @endif
-                                    | <a href="{{ route('admin.expanse.edit', $expanse->id) }}" class="editcat btn btn-sm btn-blue text-white"><i class="fas fa-pencil-alt"></i></a> |
+                                    | <a href="#" data-id="{{ $expanse->id }}" title="edit" data-toggle="modal"
+                                        data-target="#editModal" class="edit_expanse btn btn-sm btn-blue text-white"><i class="fas fa-pencil-alt"></i></a> |
                                         <a id="delete" href="{{ route('admin.expanse.delete', $expanse->id) }}"
                                             class="btn btn-danger btn-sm text-white" title="Delete">
                                             <i class="far fa-trash-alt"></i>
                                         </a>
-
                                     </td>
                                 </tr>
                                 @endforeach
@@ -138,12 +138,14 @@
                         <input type="date" class="form-control" value="{{date('Y-m-d')}}" name="date" required>
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <label class="col-form-label text-right">Amount :</label>
                             <input type="number" class="form-control" placeholder="Amount" name="amount" required>
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <label class="col-form-label text-right">Note (Optional) :</label>
@@ -161,6 +163,23 @@
     </div>
 </div>
 
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content edit_content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Expanse</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body edit_modal_body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @endsection
 
@@ -172,21 +191,30 @@
     $(document).ready(function () {
 
         $('#check_all').on('click', function (e) {
-
             if ($(this).is(':checked', true)) {
                 $(".checkbox").prop('checked', true);
-
             } else {
-
                 $(".checkbox").prop('checked', false);
-
             }
-
         });
-
     });
 
 </script>
 
+<script>
+    $(document).ready(function () {
+       $(document).on('click', '.edit_expanse', function(){
+           var expanse_id = $(this).data('id');
+           $.ajax({
+               url:"{{ url('admin/expanses/edit') }}" + "/" + expanse_id,
+               type:'get',
+               success:function(data){
+                   $('.edit_modal_body').empty();
+                   $('.edit_modal_body').append(data);
+               }
+           });
+       });
+   });
+</script>
 
 @endpush
