@@ -37,7 +37,7 @@
 <body id="page-top">
     <!-- preloader -->
     <div class="preloader">
-        <img src="{{asset('public/admins/images/preloader.gif')}}" alt="">
+        <img src="{{asset('public/admins/images/preloader3.gif')}}" alt="">
     </div>
     <!-- wrapper -->
     <div class="wrapper">

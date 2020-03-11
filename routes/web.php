@@ -63,8 +63,10 @@ Route::group(['prefix' => 'admin/academic', 'namespace' => 'admin', 'middleware'
     Route::group(['prefix' => 'class'], function () {
         Route::get('/', 'ClassController@index')->name('admin.class.index');
         Route::post('store', 'ClassController@store')->name('admin.class.store');
-        Route::get('edit/{classId}', 'ClassController@edit')->name('admin.class.edit');
-        Route::post('update/{classId}', 'ClassController@update')->name('admin.class.update');
+
+        Route::patch('update/{classId}', 'ClassController@update')->name('admin.class.update');
+
+
 
         Route::get('status/change/{classId}', 'ClassController@changeStatus')->name('admin.class.status.update');
         Route::get('soft/delete/{classId}', 'ClassController@softDelete')->name('admin.class.soft.delete');
@@ -76,6 +78,9 @@ Route::group(['prefix' => 'admin/academic', 'namespace' => 'admin', 'middleware'
         Route::get('hard/delete/{classId}', 'ClassController@hardDelete')->name('admin.class.hard.delete');
         Route::post('multiple/hard/delete', 'ClassController@multipleHardDelete')->name('admin.class.multiple.hard.delete');
 
+        // Ajax Route
+        Route::get('edit/{classId}', 'ClassController@edit')->name('admin.class.edit');
+
     });
 
     Route::group(['prefix' => 'subject'], function () {
@@ -85,7 +90,10 @@ Route::group(['prefix' => 'admin/academic', 'namespace' => 'admin', 'middleware'
         Route::get('delete/{subjectId}', 'SubjectController@delete')->name('admin.academic.subject.delete');
         Route::post('multiple/delete', 'SubjectController@multipleDelete')->name('admin.academic.subject.multiple.delete');
         Route::get('edit/{subjectId}', 'SubjectController@edit')->name('admin.academic.subject.edit');
-        Route::post('update/{subjectId}', 'SubjectController@update')->name('admin.academic.subject.update');
+        Route::patch('update/{subjectId}', 'SubjectController@update')->name('admin.academic.subject.update');
+
+        // Ajax Route
+        Route::get('edit/{subjectId}', 'SubjectController@edit')->name('admin.academic.subject.edit');
     });
 
     Route::group(['prefix' => 'section'], function () {
@@ -114,7 +122,7 @@ Route::group(['prefix' => 'admin/academic', 'namespace' => 'admin', 'middleware'
     });
 
     Route::group(['prefix' => 'assign/class/teachers'], function () {
-        
+
         Route::get('/', 'AssignClassTeacherController@index')->name('academic.assign.class.teacher.index');
     });
 
@@ -208,7 +216,7 @@ Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
     Route::get('/hostelroom/edit/{id}','HostelController@hostelroomedit');
     Route::post('/hostelroom/update','HostelController@hostelroomupdate')->name('hostelroom.update');
     Route::post('/hostelroom/multidelete','HostelController@hostelroommultidel')->name('hostelroom.multidelete');
-    
+
 
 
 

@@ -2081,3 +2081,8 @@ label.chech_container {
     text-transform: initial;
 }
 
+/* Edit modal Style */
+
+.edit_content {
+    margin-top: 15rem;
+}

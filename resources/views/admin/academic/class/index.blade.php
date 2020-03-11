@@ -78,7 +78,8 @@
                                             <i class="fas fa-thumbs-down"></i>
                                         </a>
                                         @endif
-                                    | <a href="{{ route('admin.class.edit', $class->id) }}" class="edit_class btn btn-sm btn-blue text-white"><i class="fas fa-pencil-alt"></i></a> |
+                                    | <a href="#" class="edit_class btn btn-sm btn-blue text-white" data-id="{{ $class->id }}" title="edit" data-toggle="modal"
+                                        data-target="#editModal"><i class="fas fa-pencil-alt" ></i></a> |
                                         <a id="delete" href="{{ route('admin.class.soft.delete', $class->id) }}"
                                             class="btn btn-danger btn-sm text-white" title="Delete">
                                             <i class="far fa-trash-alt"></i>
@@ -139,6 +140,24 @@
 </div>
 
 
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content edit_content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Class</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body edit_modal_body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 @endsection
@@ -177,6 +196,23 @@
 @error('name')
 toastr.error("{{ $errors->first('name') }}");
 @enderror
+
 </script>
+
+<script>
+     $(document).ready(function () {
+        $(document).on('click', '.edit_class', function(){
+            var class_id = $(this).data('id');
+            $.ajax({
+                url:"{{ url('admin/academic/class/edit/') }}" + "/" + class_id,
+                type:'get',
+                success:function(data){
+                    $('.edit_modal_body').empty();
+                    $('.edit_modal_body').append(data);
+                }
+            });
+        });
+    });
+ </script>
 
 @endpush

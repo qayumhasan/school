@@ -46,7 +46,7 @@ class ClassController extends Controller
     {
         $class = Classes::with('classSections')->where('id', $classId)->firstOrFail();
         $sections = Section::select(['id', 'name'])->where('status', 1)->get();
-        return view('admin.academic.class.edit', compact('class', 'sections'));
+        return view('admin.academic.class.ajax_view.edit_modal_view', compact('class', 'sections'));
     }
 
     public function update(Request $request, $classId)

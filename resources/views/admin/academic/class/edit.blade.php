@@ -26,7 +26,7 @@
             <div class="panel_title"><span>Edit Class</span></div>
         </div>
         <div class="panel_body">
-        <form action="{{ route('admin.class.update', $class->id) }}" method="POST">
+        <form action="{{ route('admin.class.update') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="inputEmail3" class="col-form-label text-right"> Name:</label>
