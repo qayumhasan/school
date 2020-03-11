@@ -4,15 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\InventoryCategory;
+use App\InventoryItem;
+use App\ItemSupplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use phpDocumentor\Reflection\Types\Null_;
+use Illuminate\Support\Facades\Auth;
+
 
 class InventoryController extends Controller
 {
     public function __construct()
     {
-     $this->middleware('auth:admin');   
+        $this->middleware('auth:admin');
     }
 
     // show all category
@@ -20,25 +23,25 @@ class InventoryController extends Controller
 
     public function categoryIndex()
     {
-        $cateogres =InventoryCategory::all();
-        return view('admin.inventory.category',compact('cateogres'));
+        $cateogres = InventoryCategory::all();
+        return view('admin.inventory.category', compact('cateogres'));
     }
 
     // store category
 
     public function categoryStore(Request $request)
     {
-        $data =$request->validate([
-            'category'=>'required|unique:inventory_categories|max:225',
-            'description'=>'required',
+        $data = $request->validate([
+            'category' => 'required|unique:inventory_categories|max:225',
+            'description' => 'required',
         ]);
         InventoryCategory::insert([
-            'category'=>$request->category,
-            'description'=>$request->description,
-            'created_at'=>Carbon::now(),
+            'category' => $request->category,
+            'description' => $request->description,
+            'created_at' => Carbon::now(),
         ]);
-        
-        
+
+
         $notification = array(
             'messege' => 'Category Created successfully:)',
             'alert-type' => 'success'
@@ -60,13 +63,13 @@ class InventoryController extends Controller
     public function categoryUpdate(Request $request)
     {
         $request->validate([
-            'category'=>'required|max:225|unique:inventory_categories,category,' .$request->id,
-            'description'=>'required',
+            'category' => 'required|max:225|unique:inventory_categories,category,' . $request->id,
+            'description' => 'required',
         ]);
 
         InventoryCategory::findOrFail($request->id)->update([
-            'category'=>$request->category,
-            'description'=>$request->description,
+            'category' => $request->category,
+            'description' => $request->description,
         ]);
 
         $notification = array(
@@ -91,14 +94,13 @@ class InventoryController extends Controller
 
     public function categoryMultiDelete(Request $request)
     {
-        if($request->deleteId == NULL){
+        if ($request->deleteId == NULL) {
             $notification = array(
                 'messege' => 'You did not select any category',
                 'alert-type' => 'error'
             );
             return Redirect()->back()->with($notification);
-        
-        }else{
+        } else {
             foreach ($request->deleteId as $delid) {
                 InventoryCategory::where('id', $delid)->delete();
             }
@@ -111,6 +113,226 @@ class InventoryController extends Controller
     }
 
 
+    //================== item route start from here ================================\\
+
+    public function itemIndex()
+    {
+    
+        $items = InventoryItem::active();
+
+        return view('admin.inventory.item', compact('items'));
+    }
+
+
+    // store item
+
+    public function itemStore(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'code' => 'required|max:255',
+            'description' => 'required',
+        ]);
+
+        InventoryItem::insert([
+            'name' => $request->name,
+            'code' => $request->code,
+            'description' => $request->description,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'messege' => 'Inventory Item is Created successfully!',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+
+    // edit Item
+
+    public function itemEdit($id)
+    {
+        $item = InventoryItem::findOrFail($id);
+        return response()->json($item);
+    }
+
+
+    // Update item
+
+    public function itemUpdate(Request $request)
+    {
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'code' => 'required|max:255',
+            'description' => 'required',
+        ]);
+
+        InventoryItem::findOrFail($request->id)->update([
+            'name' => $request->name,
+            'code' => $request->code,
+            'description' => $request->description,
+
+        ]);
+        $notification = array(
+            'messege' => 'Inventory Item is Updated successfully!',
+            'alert-type' => 'success'
+        );
+        return Redirect()->back()->with($notification);
+    }
+
+    // item status update
+
+    public function itemStatus($id)
+    {
+        $statusChange = InventoryItem::findOrFail($id);
+        if ($statusChange->status == 1) {
+            $statusChange->status = 0;
+            $statusChange->save();
+            $notification = array(
+                'messege' => 'Inventory Item Status is deactivated',
+                'alert-type' => 'success'
+            );
+            return Redirect()->back()->with($notification);
+        } else {
+            $statusChange->status = 1;
+            $statusChange->save();
+            $notification = array(
+                'messege' => 'Inventory Item Status is activated',
+                'alert-type' => 'success'
+            );
+            return Redirect()->back()->with($notification);
+        }
+    }
+
+    // inventory Item Multi delete
+
+    public function itemMultiDelete(Request $request)
+    {
+        $deleteid = $request->Input('deleteId');
+
+        if($request->Input('deleteId') != NULL){
+
+
+
+            $deleteid =InventoryItem::whereIn('id', $deleteid)->singleDelete();
+            
+             if($deleteid){
+                 $notification=array(
+                    'messege'=>'Inventory Item Multi Deleted Successfully!',
+                    'alert-type'=>'success'
+                     );
+                 return redirect()->back()->with($notification);
+             }else{
+                 $notification=array(
+                    'messege'=>'error',
+                    'alert-type'=>'error'
+                     );
+                 return redirect()->back()->with($notification);
+                }
+         }else{
+            $notification=array(
+                'messege'=>'Nothing To Delete',
+                'alert-type'=>'info'
+                 );
+             return redirect()->back()->with($notification);
+         }
+    }
+
+    // item deleted
+
+    public function itemDelete($id)
+    {
+        InventoryItem::where('id',$id)->singleDelete();
+        $notification=array(
+            'messege'=>'Item Deleted Successfully!',
+            'alert-type'=>'success'
+             );
+         return redirect()->back()->with($notification);
+    }
+
+
+    // supplier method start from here
+
+    public function supplierIndex()
+    {
+        $itemsuppliers = ItemSupplier::active();
+        return view('admin.inventory.supplier',compact('itemsuppliers'));
+    }
+
+    // supplier store
+
+    public function supplierStore(Request $request)
+    {
+        
+        $request->validate([
+            'item_supplier'=>'required',
+            'phone'=>'required',
+            'email'=>'required',
+            'address'=>'required',
+            'contact_person_name'=>'required',
+            'contact_person_phone'=>'required',
+            'contact_person_email'=>'required',
+            'description'=>'required',
+        ]);
+
+        ItemSupplier::create($request->all());
+        $notification=array(
+            'messege'=>'Supplier Created Successfully!',
+            'alert-type'=>'success'
+             );
+         return redirect()->back()->with($notification);
+    }
+
+
+    // edit supplier
+
+    public function supplierEdit($id)
+    {
+        $supplier = ItemSupplier::findOrFail($id);
+        return response()->json($supplier);
+    }
+
+    // update supplier
+
+    public function supplierUpdate(Request $request)
+    {
+        $request->validate([
+            'item_supplier'=>'required',
+            'phone'=>'required',
+            'email'=>'required',
+            'address'=>'required',
+            'contact_person_name'=>'required',
+            'contact_person_phone'=>'required',
+            'contact_person_email'=>'required',
+            'description'=>'required',
+        ]);
+
+        ItemSupplier::findOrFail($request->id)->update($request->all());
+
+        $notification=array(
+            'messege'=>'Supplier Update Successfully!',
+            'alert-type'=>'success'
+             );
+         return redirect()->back()->with($notification);
+
+    }
+
+    // delete supplier
+
+    public function supplierDelete ($id)
+    {
+
+        
+        ItemSupplier::where('id',$id)->singleDelete();
+
+        $notification=array(
+            'messege'=>'Supplier Deleted Successfully!',
+            'alert-type'=>'success'
+             );
+         return redirect()->back()->with($notification);
+    }
 
 
 }

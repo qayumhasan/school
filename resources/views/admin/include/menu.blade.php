@@ -113,14 +113,24 @@
                     <span class="menu-text">Inventory</span>
                 </a>
                 <ul class="dashboard-menu">
-                    <li><a href="{{route('category.index')}}">Category</a></li>
-                    <li><a href="{{route('room.type')}}">Room Type</a></li>
-                    <li><a href="{{route('admin.hostel')}}">Hostel</a></li>
+                    <li><a href="{{route('inventory.category.index')}}">Inventory Category</a></li>
+                    <li><a href="{{route('item.index')}}">Inventory Items</a></li>
+                    <li><a href="{{route('admin.inventory.supplier')}}">Supplier</a></li>
                     <li><a href="chart-float.html">Student Hostel Report</a></li>
                 </ul>
             </li>
 
             <!-- Hostel area end -->
+
+
+            <!-- online user -->
+            <li class="single-nav-wrapper">
+                <a href="{{ route('online.user') }}" class="menu-item">
+                    <span class="left-icon"><i class="fas fa-user"></i></span>
+                    <span class="menu-text">Online User</span>
+                </a>
+            </li>
+            <!-- end online user -->
 
 
 

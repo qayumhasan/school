@@ -27,6 +27,8 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
 
     Route::get('/register', 'AuthController@showRegistationPage');
     Route::post('/register', 'AuthController@register')->name('admin.register');
+
+    Route::get('/online/user', 'AuthController@onlineUser')->name('online.user');
 });
 
 // Menu area start
@@ -247,13 +249,40 @@ Route::group(['prefix' => 'admin/student', 'namespace' => 'Admin'], function () 
 Route::group(['prefix'=>'admin/inventory','namespace'=>'Admin'],function(){
     Route::group(['prefix'=>'category'],function(){
         Route::get('/','InventoryController@categoryIndex')->name('inventory.category.index');
-        Route::post('/store','InventoryController@categoryStore')->name('category.store');
+
+        Route::post('/store','InventoryController@categoryStore')->name('inventory.category.store');
+
         Route::get('/edit/{id}','InventoryController@categoryEdit');
         Route::patch('/update','InventoryController@categoryUpdate')->name('inventory.category.update');
         Route::get('/delete/{id}','InventoryController@categoryDelete')->name('inventory.category.delete');
         Route::post('/category/multidelete','InventoryController@categoryMultiDelete')->name('inventory.category.multidelete');
     });
+
+
+    Route::group(['prefix'=>'item'],function(){
+        Route::get('/','InventoryController@itemIndex')->name('item.index');
+        Route::post('/store','InventoryController@itemStore')->name('category.item.store');
+        Route::get('/edit/{id}','InventoryController@itemEdit');
+        Route::patch('/update','InventoryController@itemUpdate')->name('inventory.item.update');
+        Route::get('/update/status/{id}','InventoryController@itemStatus')->name('inventory.item.status.update');
+        Route::post('/multidelete','InventoryController@itemMultiDelete')->name('inventory.item.multidelete');
+        Route::get('/delete/{id}','InventoryController@itemDelete')->name('inventory.item.delete');
+    });
+
+    Route::group(['prefix'=>'supplier'],function(){
+        Route::get('/','InventoryController@supplierIndex')->name('admin.inventory.supplier');
+        Route::post('/store','InventoryController@supplierStore')->name('inventory.supplier.store');
+        Route::get('/edit/{id}','InventoryController@supplierEdit');
+
+        Route::patch('/update','InventoryController@supplierUpdate')->name('inventory.supplier.update');
+        Route::get('/delete/{id}','InventoryController@supplierDelete')->name('inventory.supplier.delete');
+    });
+   
+
 });
+
+
+
 // Inventory area end
 
 

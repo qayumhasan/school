@@ -483,6 +483,8 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\InventoryCategory' => __DIR__ . '/../..' . '/app/InventoryCategory.php',
+        'App\\InventoryItem' => __DIR__ . '/../..' . '/app/InventoryItem.php',
+        'App\\ItemSupplier' => __DIR__ . '/../..' . '/app/ItemSupplier.php',
         'App\\Menu' => __DIR__ . '/../..' . '/app/Menu.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

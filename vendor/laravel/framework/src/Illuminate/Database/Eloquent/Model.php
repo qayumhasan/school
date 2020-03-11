@@ -3,6 +3,7 @@
 namespace Illuminate\Database\Eloquent;
 
 use ArrayAccess;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Queue\QueueableCollection;
 use Illuminate\Contracts\Queue\QueueableEntity;
@@ -13,6 +14,7 @@ use Illuminate\Database\ConnectionResolverInterface as Resolver;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection as BaseCollection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\ForwardsCalls;
 use JsonSerializable;
@@ -1651,4 +1653,57 @@ abstract class Model implements Arrayable, ArrayAccess, Jsonable, JsonSerializab
     {
         $this->bootIfNotBooted();
     }
+
+
+    /**
+     * custom method for get all data.
+     *
+     * @return void
+     */
+
+     public function scopeActive($query)
+     {
+         return $query->where('deleted_status',null)->get();
+     }
+
+     
+    /**
+     * custom method for delete singledata.
+     *
+     * @return void
+     */
+
+     public function scopeSingleDelete($query)
+     {
+         
+         return $query->update(
+            [
+                'deleted_by' => json_encode([
+                    'id'=>Auth::user()->id,
+                    'guard'=>Auth::getDefaultDriver(),
+                ]),
+                'deleted_at' => Carbon::now(),
+                'deleted_status' => 1,
+             ]
+         );
+         
+         
+     }
+
+
+      /**
+     * custom method for get all edit.
+     *
+     * @return void
+     */
+
+    public function scopeEdit($query,$id)
+    {
+        
+        return $query->where('deleted_status',$id)->first();
+    }
+
+
+
+
 }
