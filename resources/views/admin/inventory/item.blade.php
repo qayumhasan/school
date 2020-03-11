@@ -7,18 +7,18 @@
         <div class="row">
                     <div class="col-md-6">
                         <div class="panel_title">
-                            <span class="panel_icon"><i class="fas fa-border-all"></i></span><span>Hostel List</span>
+                            <span class="panel_icon"><i class="fas fa-border-all"></i></span><span>Item List</span>
                         </div>
                     </div>
                     <div class="col-md-6 text-right">
                         <div class="panel_title">
                             <a href="#" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal1"><i
-                                    class="fas fa-plus"></i></span> <span>Add Hostel</span></a>
+                                    class="fas fa-plus"></i></span> <span>Add Item</span></a>
                         </div>
                     </div>
                 </div>
         </div>
-        <form action="{{route('inventory.category.multidelete')}}" method="post">
+        <form action="{{route('inventory.item.multidelete')}}" id="multiple_delete" method="post">
             @csrf
         <button type="submit" style="margin: 5px;" class="btn btn-sm btn-danger">
                     <i class="fa fa-trash"></i> Delete all</button>
@@ -35,33 +35,33 @@
                                     <span class="checkmark"></span>
                                 </label>
                             </th>
-                            <th>Room Type</th>
+                            <th>Item Store Name</th>
+                            <th>Item Stock Code</th>
                             <th>Description</th>
                             <th>Status </th>
-                            <th>Price </th>
+                            <th>Action </th>
                         </tr>
                     </thead>
                     <tbody>
 
-
-                    @foreach($cateogres as $cateogry)
+                    @foreach($items as $item)
                    
                         <tr>
                             <td>
                                 <label class="chech_container mb-4">
-                                    <input type="checkbox" name="deleteId[]" class="checkbox" value="{{$cateogry->id}}">
+                                    <input type="checkbox" name="deleteId[]" class="checkbox" value="{{$item->id}}">
                                     <span class="checkmark"></span>
                                 </label>
                             </td>
-                            <td>{{$cateogry->category}}</td>
-                            <td>{{$cateogry->description}}</td>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->code}}</td>
+                            <td>{{$item->description}}</td>
                             <td>
-                                @if($cateogry->status ==  1)
-                                <a href="{{ route('room.type.status.update', $cateogry->id) }}" class="btn btn-success btn-sm ">
+                                @if($item->status == 1)
+                                <a href="{{ route('inventory.item.status.update',$item->id) }}" class="btn btn-success btn-sm ">
                                     <i class="fas fa-thumbs-up"></i></a>
                                 @else
-                                
-                                <a href="{{ route('room.type.status.update', $cateogry->id ) }}" class="btn btn-danger btn-sm">
+                                <a href="{{ route('inventory.item.status.update', $item->id ) }}" class="btn btn-danger btn-sm">
                                     <i class="fas fa-thumbs-down"></i>
                                 </a>
                                 @endif
@@ -69,14 +69,16 @@
                             </td>
              
                             <td>
-                                | <a class="edit_route btn btn-sm btn-blue text-white" data-id="{{$cateogry->id}}" title="edit" data-toggle="modal" data-target="#editModal"><i class="fas fa-pencil-alt"></i></a> |
-                                <a id="delete" href="{{route('inventory.category.delete',$cateogry->id)}}" class="btn btn-danger btn-sm text-white" title="Delete">
+                                | <a class="edit_route btn btn-sm btn-blue text-white" data-id="{{$item->id}}" title="edit" data-toggle="modal" data-target="#editModal"><i class="fas fa-pencil-alt"></i></a> |
+                                <a id="delete" href="{{route('inventory.item.delete',$item->id)}}" class="btn btn-danger btn-sm text-white" title="Delete">
                                     <i class="far fa-trash-alt"></i>
                                 </a>
                             </td>
                         </tr>
 
-                    @endforeach
+                        @endforeach
+
+                    
                        
 
                     </tbody>
@@ -96,26 +98,43 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Add Inventory Category</h4>
+                <h4 class="modal-title">Add Route</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <!-- Modal body -->
             <div class="modal-body">
-                <form class="form-horizontal" action="{{ route('inventory.category.store') }}" method="POST">
+                <form class="form-horizontal" action="{{ route('category.item.store') }}" method="POST">
                     @csrf
                     <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-3 col-form-label text-right">Category:</label>
+                        <label for="inputEmail3" class="col-sm-3 col-form-label text-right">Item Store Name:</label>
                         <div class="col-sm-8">
-                            <input required type="text"  class="form-control" placeholder="Inventory Category" name="category" required>
-                            <span class="text-danger">{{ $errors->first('category') }}</span>
+                            <input required type="text" class="form-control" placeholder="Item Store Name" name="name" required>
+                            @error('name')
+                                {{$message}}
+                            @enderror
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label text-right">Item Stock Name:</label>
+                        <div class="col-sm-8">
+                            <input required type="text" class="form-control" placeholder="Item Store Name" name="code" required>
+                            @error('name')
+                                {{$message}}
+                            @enderror
+                        </div>
+                    </div>
+
+
+
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label text-right">Description:</label>
                         <div class="col-sm-8">
                             <textarea rows="3" class="form-control" name="description" require></textarea>
-                            <span class="text-danger">{{ $errors->first('description') }}</span>
+                            @error('name')
+                                {{$message}}
+                            @enderror
                             
                         </div>
                     </div>
@@ -134,35 +153,58 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Update Inventory Category</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Update Item</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" action="{{ route('inventory.category.update') }}" method="POST" enctype="multipart/form-data">
+                <form class="form-horizontal" action="{{ route('inventory.item.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-3 col-form-label text-right">Category:</label>
+                        <label for="inputEmail3" class="col-sm-3 col-form-label text-right">Item Store Name:</label>
                         <div class="col-sm-8">
-                            <input required type="hidden" id="id" class="form-control" placeholder="Inventory Category" name="id" required>
-                            <input required type="text"  id="category" class="form-control" placeholder="Inventory Category" name="category" required>
-                            <span class="text-danger">{{ $errors->first('category') }}</span>
+                            <input required type="hidden" class="form-control" placeholder="Item Store Name" id="id" name="id" required>
+                            <input required type="text" class="form-control" placeholder="Item Store Name" id="name" name="name" required>
+                            @error('name')
+                            <div class="alert alert-warning" role="alert">
+                                    {{$message}}
+                            </div>
+                            @enderror
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label text-right">Item Stock Name:</label>
+                        <div class="col-sm-8">
+                            <input required type="text" class="form-control" placeholder="Item Store Name" id="code" name="code" required>
+                            @error('code')
+                            <div class="alert alert-warning" role="alert">
+                                    {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                    </div>
+
+
+
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-3 col-form-label text-right">Description:</label>
                         <div class="col-sm-8">
-                            <textarea rows="3" id="description" class="form-control" name="description" require></textarea>
-                            <span class="text-danger">{{ $errors->first('description') }}</span>
+                            <textarea rows="3" class="form-control" name="description" id="description" require></textarea>
+                            @error('description')
+                            <div class="alert alert-warning" role="alert">
+                                    {{$message}}
+                            </div>
+                            @enderror
                             
                         </div>
                     </div>
 
                     <div class="form-group text-right">
                         <button type="button" class="btn btn-default" data-dismiss="modal" aria-label=""> Close</button>
-                        <button type="submit" class="btn btn-blue">Submit</button>
+                        <button type="submit" class="btn btn-blue">Update</button>
                     </div>
                 </form>
             </div>
@@ -180,17 +222,18 @@
         $('.edit_route').on('click', function() {
             var id = $(this).data('id');
             
-            
             if (id) {
                 $.ajax({
-                    url: "{{ url('admin/inventory/category/edit/') }}/" + id,
+                    url: "{{ url('admin/inventory/item/edit/') }}/" + id,
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
                         
-                        $("#category").val(data.category);
-                        $("#description").val(data.description);
                         $("#id").val(data.id);
+                        $("#name").val(data.name);
+                        $("#code").val(data.code);
+                        $("#description").val(data.description);
+                        
                     }
                 });
             } else {
