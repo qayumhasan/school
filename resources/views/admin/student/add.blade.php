@@ -46,17 +46,17 @@ a.anchor-collaps.collapsed {
 					<div class="panel">
 						<div class="panel_header">
 							<div class="row">
-								
+
 									<div class="panel_title">
 										<span class="panel_icon"><i class="fas fa-plus-square"></i></span>
 										<span>Student Information</span>
 									</div>
-								
+
 								
 							</div>
 						</div>
 						<div class="panel_body">
-						
+
 								 <div class="form-group row">
 								    <div class="col-sm-3">
 								    	<label for="inputEmail3" class="text-center">Admission Number <span style="color:red">*</span></label>
@@ -78,7 +78,7 @@ a.anchor-collaps.collapsed {
 								    <div class="col-sm-3">
 								    	<label for="inputEmail3" class="text-center">Section</label>
 									      <select class="form-control" name="section" id="sections">
-									      		
+
 									      <select>
 								    </div>
 								  </div>
@@ -126,7 +126,7 @@ a.anchor-collaps.collapsed {
 								    	<label for="inputEmail3" class="text-center">Email</label>
 								      <input type="text" class="form-control" name="email">
 								    </div>
-								    
+
 								  </div>
 								  <div class="form-group row">
 								    <div class="col-sm-3">
@@ -169,8 +169,8 @@ a.anchor-collaps.collapsed {
 							</div>
 						</div>
 						<div class="panel_body">
-						
-						       
+
+
 								 <div class="form-group row">
 								    <div class="col-sm-3">
 								    	<label for="inputEmail3" class="text-center">Father Name<span style="color:red">*</span></label>
@@ -225,7 +225,7 @@ a.anchor-collaps.collapsed {
 										  <label class="form-check-label" for="inlineCheckbox3">Other</label>
 										</div>
 
-									    
+
 								    </div>
 								  </div>
 								  <div class="form-group row">
@@ -274,7 +274,7 @@ a.anchor-collaps.collapsed {
 					        <a class="anchor-collaps collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
 					          Add More Details
 					          <span class="plus-minus-toggle"></span>
-					        </a><!--<span class="icon">-</span> -->   
+					        </a><!--<span class="icon">-</span> -->
 					      </h4>
 					    </div>
 					    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
@@ -323,7 +323,7 @@ a.anchor-collaps.collapsed {
 									</div>
 								</div>
 								<div class="panel_body">
-									
+
 										  <div class="form-group row">
 										    <div class="col-sm-6">
 										    	<label for="inputEmail3" class="text-left">Route List<span style="color: red"></span></label>
@@ -337,11 +337,11 @@ a.anchor-collaps.collapsed {
 										    <div class="col-sm-6">
 										    	<label for="inputEmail3" class="text-left">Bus<span style="color: red"></span></label>
 										        <select class="form-control" name="bus_id" id="bus_id">
-										        	
+
 										        </select>
 										    </div>
 								 		 </div>
-								 		 
+
 									</div>
 
 								<div class="panel_header">
@@ -389,7 +389,7 @@ a.anchor-collaps.collapsed {
 									    	<label for="inputEmail3" class="text-left">Note</label>
 									         <textarea class="form-control" name=""></textarea>
 									    </div>
-									   
+
 							 		 </div>
 								</div>
 							</div>
@@ -690,7 +690,7 @@ color: #fff;
                 }
             })
       });
-	  
+
 </script>
 
 @endsection

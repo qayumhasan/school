@@ -10,7 +10,7 @@ class ExpanseHeaderController extends Controller
 {
     public function index()
     {
-        $headers = ExpanseHeader::latest()->get();
+        $headers = ExpanseHeader::latest()->active();
         return view('admin.expanse.header.index', compact('headers'));
     }
 
@@ -19,6 +19,7 @@ class ExpanseHeaderController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:expanse_headers,name'
         ]);
+        
         $addClass = new ExpanseHeader();
         $addClass->name = $request->name;
         $addClass->note = $request->note;
@@ -72,7 +73,7 @@ class ExpanseHeaderController extends Controller
 
     public function delete($headerId)
     {
-        ExpanseHeader::where('id', $headerId)->delete();
+        ExpanseHeader::where('id', $headerId)->singleDelete();
         $notification = array(
             'messege' => 'Expanse header is deleted permanently',
             'alert-type' => 'success'
@@ -90,7 +91,7 @@ class ExpanseHeaderController extends Controller
             return Redirect()->back()->with($notification);
         } else {
             foreach ($request->deleteId as $headerId) {
-                ExpanseHeader::where('id', $headerId)->delete();
+                ExpanseHeader::where('id', $headerId)->singleDelete();
             }
         }
         $notification = array(

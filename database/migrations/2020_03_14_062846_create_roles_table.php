@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateExpanseHeadersTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateExpanseHeadersTable extends Migration
      */
     public function up()
     {
-        Schema::create('expanse_headers', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->boolean('status');
-            $table->string('deleted_status')->nullable();
-            $table->string('deleted_at')->timestamps();
-            $table->string('deleted_by')->nullable();
+            $table->integer('role_known_id');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateExpanseHeadersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('expanse_headers');
+        Schema::dropIfExists('roles');
     }
 }

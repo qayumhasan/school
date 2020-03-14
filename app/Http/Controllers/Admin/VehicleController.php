@@ -10,7 +10,7 @@ class VehicleController extends Controller
 {
     public function index()
     {
-        $vehicles = Vehicle::latest()->get();
+        $vehicles = Vehicle::latest()->active();
         return view('admin.transport.vehicle.index', compact('vehicles'));
     }
 
@@ -91,7 +91,7 @@ class VehicleController extends Controller
 
     public function delete($vehicleId)
     {
-        Vehicle::where('id', $vehicleId)->delete();
+        Vehicle::where('id', $vehicleId)->singleDelete();
         $notification = array(
             'messege' => 'Vehicle is deleted',
             'alert-type' => 'success'
@@ -109,7 +109,7 @@ class VehicleController extends Controller
             return Redirect()->back()->with($notification);
         } else {
             foreach ($request->deleteId as $deleteId) {
-                Vehicle::where('id', $deleteId)->delete();
+                Vehicle::where('id', $deleteId)->singleDelete();
             }
         }
         $notification = array(

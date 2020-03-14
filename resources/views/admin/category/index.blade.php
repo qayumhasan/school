@@ -21,12 +21,10 @@
                 </div>
 
             </div>
-            <form id="multiple_delete" action="{{ route('admin.category.multiple.soft.delete') }}" method="post">
+            <form id="multiple_delete" action="{{ route('admin.category.multiple.hard.delete') }}" method="post">
                 @csrf
                 <button type="submit" style="margin: 5px;" class="btn btn-sm btn-danger">
                     <i class="fa fa-trash"></i> Delete all</button>
-                <button type="button" style="margin: 5px;" class="btn btn-sm btn-success"><i class="fas fa-recycle"></i> <a
-                        href="{{ route('admin.category.trashes') }}" style="color: #fff;">Restore</a></button>
                 <div class="panel_body">
                     <div class="table-responsive">
                         <table id="dataTableExample1" class="table table-bordered table-striped table-hover mb-2">
@@ -74,7 +72,7 @@
                                         | <a class="editcat btn btn-sm btn-blue text-white" data-id="{{$category->id}}"
                                             title="edit" data-toggle="modal" data-target="#editModal"><i
                                                 class="fas fa-pencil-alt"></i></a> |
-                                        <a id="delete" href="{{ route('admin.category.soft.delete', $category->id) }}"
+                                        <a id="delete" href="{{ route('admin.category.hard.delete', $category->id) }}"
                                             class="btn btn-danger btn-sm text-white" title="Delete">
                                             <i class="far fa-trash-alt"></i>
                                         </a>

@@ -21,7 +21,9 @@ class CreateExpansesTable extends Migration
             $table->string('year');
             $table->string('month');
             $table->boolean('status')->default(1);
-            $table->boolean('is_deleted')->default(0);
+            $table->string('deleted_status')->nullable();
+            $table->string('deleted_at')->timestamps();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
             $table->foreign('expanse_header_id')->references('id')->on('expanse_headers')->onDelete('cascade');
         });

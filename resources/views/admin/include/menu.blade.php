@@ -20,7 +20,7 @@
 
                 </ul>
             </li>
-            
+
             <li class="single-nav-wrapper">
                 <a href="{{ route('category.index') }}" class="menu-item">
                     <span class="left-icon"><i class="fas fa-home"></i></span>
@@ -71,6 +71,19 @@
                     <li><a href="{{ route('admin.expanse.index') }}">expanse</a></li>
                     <li><a href="{{ route('admin.expanse.search') }}">Search expanse</a></li>
                     <li><a href="{{ route('admin.expanse.header.all') }}">expanse header</a></li>
+                </ul>
+            </li>
+
+            <li class="single-nav-wrapper {{ Request::is('admin/employee*') ? 'mm-active' : '' }}">
+                <a class="has-arrow menu-item" href="#" aria-expanded="false">
+                    <span class="left-icon"><i class="fas fa-table"></i></span>
+                    <span class="menu-text">Emplyees</span>
+                </a>
+                <ul class="dashboard-menu">
+                    <li><a href="#">Employee List</a></li>
+                    <li><a href="{{ route('admin.employee.create') }}">Add Employee</a></li>
+                    <li><a href="#">Search Employee</a></li>
+
                 </ul>
             </li>
 

@@ -17,6 +17,11 @@ class CreateClassSectionsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('class_id');
             $table->unsignedBigInteger('section_id');
+            $table->boolean('is_assigned_teacher')->default(0);
+            $table->boolean('is_assigned_subject')->default(0);
+            $table->string('deleted_status')->nullable();
+            $table->string('deleted_at')->timestamps();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');

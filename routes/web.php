@@ -12,7 +12,6 @@
 */
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Admin route start from here
@@ -34,7 +33,6 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
 // Menu area start
 
 Route::namespace('Admin')->prefix('admin')->group(function () {
-
     Route::get('/menu', 'AdminController@menuSetting')->name('admin.menu.setting');
     Route::get('/url/setting', 'AdminController@urlSetting')->name('admin.url.setting');
     Route::get('/get/url/name/{id}', 'AdminController@getUrlName');
@@ -47,13 +45,8 @@ Route::group(['prefix' => 'admin/category', 'namespace' => 'Admin', 'middleware'
     Route::post('store', 'CategoryController@store')->name('admin.category.store');
     Route::patch('update', 'CategoryController@update')->name('admin.category.update');
     Route::get('status/change/{categoryId}', 'CategoryController@changeStatus')->name('admin.category.status.update');
-    Route::get('soft/delete/{categoryId}', 'CategoryController@softDelete')->name('admin.category.soft.delete');
     Route::get('hard/delete/{categoryId}', 'CategoryController@hardDelete')->name('admin.category.hard.delete');
-    Route::post('multiple/soft/delete', 'CategoryController@multipleSoftDelete')->name('admin.category.multiple.soft.delete');
     Route::post('multiple/hard/delete', 'CategoryController@multipleHardDelete')->name('admin.category.multiple.hard.delete');
-    Route::get('trashes', 'CategoryController@trashes')->name('admin.category.trashes');
-    Route::get('refactor/{categoryId}', 'CategoryController@refactor')->name('admin.category.refactor');
-    Route::post('multiple/refactor', 'CategoryController@multipleRefactor')->name('admin.category.multiple.refactor');
 
     // Ajax Routes
     Route::get('/edit/{categoryId}', 'CategoryController@getCategoryNameByAjax');
@@ -68,12 +61,7 @@ Route::group(['prefix' => 'admin/academic', 'namespace' => 'admin', 'middleware'
         Route::patch('update/{classId}', 'ClassController@update')->name('admin.class.update');
 
         Route::get('status/change/{classId}', 'ClassController@changeStatus')->name('admin.class.status.update');
-        Route::get('soft/delete/{classId}', 'ClassController@softDelete')->name('admin.class.soft.delete');
-        Route::post('multiple/delete', 'ClassController@multipleSoftDelete')->name('admin.class.multiple.soft.delete');
 
-        Route::get('trashes', 'ClassController@trashes')->name('admin.class.trashes');
-        Route::get('refactor/{classId}', 'ClassController@refactor')->name('admin.class.refactor');
-        Route::post('multiple/refactor', 'ClassController@multipleRefactor')->name('admin.class.multiple.refactor');
         Route::get('hard/delete/{classId}', 'ClassController@hardDelete')->name('admin.class.hard.delete');
         Route::post('multiple/hard/delete', 'ClassController@multipleHardDelete')->name('admin.class.multiple.hard.delete');
 
@@ -102,7 +90,6 @@ Route::group(['prefix' => 'admin/academic', 'namespace' => 'admin', 'middleware'
         Route::get('delete/{section}', 'SectionController@delete')->name('admin.academic.delete');
         Route::post('multiple/delete', 'SectionController@multipleDelete')->name('admin.academic.section.multiple.delete');
         Route::get('change/status/{section}', 'SectionController@changeStatus')->name('admin.academic.section.status.update');
-
 
          // Ajax Routes
          Route::get('/edit/{sectionId}', 'SectionController@getSectionByAjax');
@@ -201,10 +188,11 @@ Route::group(['prefix' => 'admin/expanses', 'middleware' => 'auth:admin', 'names
 
 });
 
+Route::group(['prefix' => 'admin/employees', 'namespace' => 'Admin'], function () {
+    Route::get(md5('create'), 'EmployeeController@create')->name('admin.employee.create');
+});
 
 // Hostel  area start
-
-
 Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
 
     Route::get('/','HostelController@index')->name('admin.hostel');
@@ -235,7 +223,6 @@ Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
     });
 });
 // Hostel area end
-
 
 Route::group(['prefix' => 'admin/student', 'namespace' => 'Admin'], function () {
 
@@ -277,14 +264,11 @@ Route::group(['prefix'=>'admin/inventory','namespace'=>'Admin'],function(){
         Route::patch('/update','InventoryController@supplierUpdate')->name('inventory.supplier.update');
         Route::get('/delete/{id}','InventoryController@supplierDelete')->name('inventory.supplier.delete');
     });
-   
+
 
 });
 
-
-
 // Inventory area end
-
 
 
 Auth::routes();

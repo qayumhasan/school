@@ -12,9 +12,8 @@ class ClassController extends Controller
 {
     public function index()
     {
-        $classes = Classes::with(['classSections', 'classSections.section'])->where('is_deleted', 0)->get();
-
-        $sections = Section::where('status', 1)->get();
+        $classes = Classes::with(['classSections', 'classSections.section'])->active();
+        $sections = Section::where('status', 1)->select('id','name')->active();
         return view('admin.academic.class.index', compact('classes', 'sections'));
     }
 
@@ -101,40 +100,6 @@ class ClassController extends Controller
         }
     }
 
-    public function softDelete($classId)
-    {
-        $SoftDelete = Classes::where('id', $classId)->first();
-        $SoftDelete->is_deleted = 1;
-        $SoftDelete->save();
-        $notification = array(
-            'messege' => 'Class is deleted',
-            'alert-type' => 'success'
-        );
-        return Redirect()->back()->with($notification);
-    }
-
-    public function multipleSoftDelete(Request $request)
-    {
-        if ($request->deleteId == null) {
-            $notification = array(
-                'messege' => 'You did not select any class',
-                'alert-type' => 'error'
-            );
-            return Redirect()->back()->with($notification);
-        } else {
-            foreach ($request->deleteId as $deleteId) {
-                $deleteClass = Classes::where('id', $deleteId)->first();
-                $deleteClass->is_deleted = 1;
-                $deleteClass->save();
-            }
-        }
-        $notification = array(
-            'messege' => 'Class is deleted',
-            'alert-type' => 'success'
-        );
-        return Redirect()->back()->with($notification);
-    }
-
     public function getClassNameByAjax($classId)
     {
         $class = Classes::where('id', $classId)->first();
@@ -142,51 +107,9 @@ class ClassController extends Controller
     }
 
 
-    public function trashes()
-    {
-        $classes = Classes::where('is_deleted', 1)->get();
-        return view('admin.academic.class.trash', compact('classes'));
-    }
-
-    public function refactor($classId)
-    {
-        $refactorClass = Classes::where('id', $classId)->first();
-        $refactorClass->is_deleted = 0;
-        $refactorClass->save();
-
-        $notification = array(
-            'messege' => 'Class is refactored successfully:)',
-            'alert-type' => 'success'
-        );
-        return Redirect()->back()->with($notification);
-    }
-
-    public function multipleRefactor(Request $request)
-    {
-        if ($request->class_id == null) {
-            $notification = array(
-                'messege' => 'You did not select any class',
-                'alert-type' => 'error'
-            );
-            return Redirect()->back()->with($notification);
-        }
-
-        foreach ($request->class_id as $classId) {
-            $refactorClass = Classes::where('id', $classId)->first();
-            $refactorClass->is_deleted = 0;
-            $refactorClass->save();
-        }
-
-        $notification = array(
-            'messege' => 'Class is refactored successfully:)',
-            'alert-type' => 'success'
-        );
-        return Redirect()->back()->with($notification);
-    }
-
     public function hardDelete($classId)
     {
-        Classes::where('id', $classId)->delete();
+        Classes::where('id', $classId)->singleDelete();
         $notification = array(
             'messege' => 'Class is deleted permanently',
             'alert-type' => 'success'
@@ -204,7 +127,7 @@ class ClassController extends Controller
             return Redirect()->back()->with($notification);
         } else {
             foreach ($request->class_id as $classId) {
-                Classes::where('id', $classId)->delete();
+                Classes::where('id', $classId)->singleDelete();
             }
         }
         $notification = array(

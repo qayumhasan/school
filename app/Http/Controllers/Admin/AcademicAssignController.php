@@ -90,7 +90,7 @@ class AcademicAssignController extends Controller
     public function getAssignedSubjectByAjax($classSectionId)
     {
         $classSubjects = ClassSubject::where('class_section_id', $classSectionId)->get();
-        $subjects = Subject::where('status', 1)->where('is_deleted', 0)->latest()->get();
+        $subjects = Subject::where('status', 1)->latest()->active();
 
         return view('admin.academic.subject_assign.ajax_blade.get_assigned_subjects', compact('subjects', 'classSubjects'));
     }
@@ -101,7 +101,7 @@ class AcademicAssignController extends Controller
         $classSection->is_assigned_subject = 0;
         $classSection->save();
         foreach ($classSection->classSubjects as $classSubject) {
-            $classSubject->delete();
+            $classSubject->singleDelete();
         }
 
         $notification = array(
