@@ -240,18 +240,18 @@ Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
 Route::group(['prefix' => 'admin/student', 'namespace' => 'Admin'], function () {
 
     Route::get('/create', 'StudentAdmissionController@create')->name('student.create');
+    Route::post('/submit', 'StudentAdmissionController@store')->name('student.insert');
     Route::get('/section/all/{id}', 'StudentAdmissionController@getsection');
     Route::get('/route/{id}', 'StudentAdmissionController@getbus');
     Route::get('/get/hostel/{id}','StudentAdmissionController@getroom');
+
 });
 
 // Inventory area start
 Route::group(['prefix'=>'admin/inventory','namespace'=>'Admin'],function(){
     Route::group(['prefix'=>'category'],function(){
         Route::get('/','InventoryController@categoryIndex')->name('inventory.category.index');
-
         Route::post('/store','InventoryController@categoryStore')->name('inventory.category.store');
-
         Route::get('/edit/{id}','InventoryController@categoryEdit');
         Route::patch('/update','InventoryController@categoryUpdate')->name('inventory.category.update');
         Route::get('/delete/{id}','InventoryController@categoryDelete')->name('inventory.category.delete');

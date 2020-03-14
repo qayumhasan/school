@@ -172,11 +172,11 @@ button,
   margin-right:10px;
   font-size: 18px;
 }
-.panel .panel_body{
-  display: block;
-  overflow:hidden;
-  padding:10px;
-  background-color: #fff;
+.panel .panel_body {
+    display: block;
+    overflow: hidden;
+    padding: 12px 26px;
+    background-color: #fff;
 }
 
 .panel .min-height-450{
