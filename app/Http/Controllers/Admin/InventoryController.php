@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Admin;
 use App\Http\Controllers\Controller;
 use App\InventoryCategory;
 use App\InventoryItem;
+use App\Item;
 use App\ItemSupplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 
 class InventoryController extends Controller
@@ -334,5 +337,189 @@ class InventoryController extends Controller
          return redirect()->back()->with($notification);
     }
 
+    // supplier Multi delete
 
+    public function supplierMultiDelete(Request $request)
+    {
+        $deleteid = $request->Input('deleteId');
+
+        if($request->Input('deleteId') != NULL){
+
+
+
+            $deleteid =ItemSupplier::whereIn('id', $deleteid)->singleDelete();
+            
+             if($deleteid){
+                 $notification=array(
+                    'messege'=>'Supplier Item Multi Deleted Successfully!',
+                    'alert-type'=>'success'
+                     );
+                 return redirect()->back()->with($notification);
+             }else{
+                 $notification=array(
+                    'messege'=>'error',
+                    'alert-type'=>'error'
+                     );
+                 return redirect()->back()->with($notification);
+                }
+         }else{
+            $notification=array(
+                'messege'=>'Nothing To Delete',
+                'alert-type'=>'info'
+                 );
+             return redirect()->back()->with($notification);
+         }
+    }
+
+    // add item controller start from here
+
+    public function addItems()
+    {
+        $categores =InventoryCategory::active();
+        $items = Item::active();
+        return view('admin.inventory.additem',compact('categores','items'));
+    }
+
+
+    // add items create
+
+    public function itemsStore(Request $request)
+    {
+        
+        $data =$request->validate([
+            'item'=>'required',
+            'category_id'=>'required',
+            'description'=>'required',
+        ]);
+
+        Item::create($data);
+
+        $notification=array(
+            'messege'=>'Item created Successfully!',
+            'alert-type'=>'success'
+             );
+         return redirect()->back()->with($notification);
+
+
+
+    }
+
+    // item edit
+
+    public function itemsEdit($id)
+    {
+        $item =Item::edit($id);
+        return response()->json($item);
+    }
+
+    // items update
+
+    public function itemsUpdate(Request $request)
+    {
+        $data =$request->validate([
+            'item'=>'required',
+            'category_id'=>'required',
+            'description'=>'required',
+        ]);
+
+        Item::findOrFail($request->id)->update($data);
+
+        $notification=array(
+            'messege'=>'Item Updated Successfully!',
+            'alert-type'=>'success'
+             );
+         return redirect()->back()->with($notification);
+    }
+
+    
+    // items delete
+
+    public function itemsDelete ($id)
+    {
+        Item::where('id',$id)->singleDelete();
+        $notification=array(
+            'messege'=>'Item Deleted Successfully!',
+            'alert-type'=>'success'
+             );
+         return redirect()->back()->with($notification);
+    }
+
+    // update status
+
+    public function itemsStatusUpdate($id)
+    {
+        $statusChange = Item::findOrFail($id);
+        if ($statusChange->status == 1) {
+            $statusChange->status = 0;
+            $statusChange->save();
+            $notification = array(
+                'messege' => ' Item Status is deactivated',
+                'alert-type' => 'success'
+            );
+            return Redirect()->back()->with($notification);
+        } else {
+            $statusChange->status = 1;
+            $statusChange->save();
+            $notification = array(
+                'messege' => ' Item Status is activated',
+                'alert-type' => 'success'
+            );
+            return Redirect()->back()->with($notification);
+        }
+    }
+
+    // multi delete
+
+    public function itemsMultiDelete (Request $request)
+    {
+        $deleteid = $request->Input('deleteId');
+
+        if($request->Input('deleteId') != NULL){
+
+
+
+            $deleteid =Item::whereIn('id', $deleteid)->singleDelete();
+            
+             if($deleteid){
+                 $notification=array(
+                    'messege'=>' Item Multi Deleted Successfully!',
+                    'alert-type'=>'success'
+                     );
+                 return redirect()->back()->with($notification);
+             }else{
+                 $notification=array(
+                    'messege'=>'error',
+                    'alert-type'=>'error'
+                     );
+                 return redirect()->back()->with($notification);
+                }
+         }else{
+            $notification=array(
+                'messege'=>'Nothing To Delete',
+                'alert-type'=>'info'
+                 );
+             return redirect()->back()->with($notification);
+         }
+        
+    }
+
+
+    // item stock area start
+
+
+    public function stockItemIndex()
+    {
+        $categores = InventoryCategory::active();
+        $items = InventoryItem::active();
+        return view('admin.inventory.item_stock',compact('categores','items'));
+    }
+
+
+    // item sttock sore
+
+    public function stockItemStore(Request $request)
+    {
+        // return $request;
+        return ($_FILES['stock_doc'] == 'image/*' || $_FILES['stock_doc'] == 'application/pdf');
+    }
 }

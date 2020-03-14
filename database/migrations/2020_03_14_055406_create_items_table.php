@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInventoryCategoriesTable extends Migration
+class CreateItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,17 @@ class CreateInventoryCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('inventory_categories', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('category');
+            $table->string('item');
+            $table->unsignedBigInteger('category_id');
             $table->text('description');
             $table->string('deleted_by')->nullable();
             $table->string('deleted_at')->nullable();
             $table->string('deleted_status')->nullable();
-            $table->integer('status')->default(1);
+            $table->string('status')->default(1);
             $table->timestamps();
+            $table->foreign('category_id')->references('id')->on('inventory_categories')->onDelete('cascade');
         });
     }
 
@@ -32,6 +34,6 @@ class CreateInventoryCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventory_categories');
+        Schema::dropIfExists('items');
     }
 }
