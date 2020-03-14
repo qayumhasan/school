@@ -93,13 +93,6 @@ class AuthController extends Controller
 
     }
 
-    // get all online user
-
-    public function onlineUser()
-    {
-        Cache::put('hello',1);
-        return Cache::getStore();
-       
-    }
+   
 
 }

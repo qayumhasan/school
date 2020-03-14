@@ -58,6 +58,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\InventoryCategory' => $baseDir . '/app/InventoryCategory.php',
     'App\\InventoryItem' => $baseDir . '/app/InventoryItem.php',
+    'App\\Item' => $baseDir . '/app/Item.php',
     'App\\ItemSupplier' => $baseDir . '/app/ItemSupplier.php',
     'App\\Menu' => $baseDir . '/app/Menu.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

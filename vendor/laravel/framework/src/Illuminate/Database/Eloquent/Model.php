@@ -1700,7 +1700,7 @@ abstract class Model implements Arrayable, ArrayAccess, Jsonable, JsonSerializab
     public function scopeEdit($query,$id)
     {
         
-        return $query->where('deleted_status',$id)->first();
+        return $query->where('id',$id)->where('deleted_status',Null)->first();
     }
 
 
