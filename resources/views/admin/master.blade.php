@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{asset('public/admins/css/bootstrap.min.css')}}">
     <!--font awesome-->
     <link rel="stylesheet" href="{{asset('public/admins/css/all.css')}}">
+    <!--@DataTable_CSS_Link-->
     <link href="{{asset('public/admins/plugins/datatables/dataTables.min.css')}}" rel="stylesheet" type="text/css">
     <!-- metis menu -->
     <link rel="stylesheet" href="{{asset('public/admins/plugins/metismenu-3.0.4/assets/css/metisMenu.min.css')}}">
@@ -92,10 +93,11 @@
 
 
     <script src="{{asset('public/admins/plugins/pie_chart/pie.active.js')}}"></script>
-    <!-- basic-donut-chart -->
+    <!-- @basic_donut_chart -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js'></script>
     <script src="{{asset('public/admins/plugins/basic-donut-chart/dist/script.js')}}"></script>
 
+    <!-- @DataTable_JS_Link-->
     <script src="{{asset('public/admins/plugins/datatables/dataTables.min.js')}}"></script>
     <script src="{{asset('public/admins/plugins/datatables/dataTables-active.js')}}"></script>
     <!-- donut-chart -->
@@ -139,15 +141,16 @@
                 buttons: true,
                 dangerMode: true,
             })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        window.location.href = link;
-                    } else {
-                        swal("Safe Data!");
-                    }
-                });
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = link;
+                } else {
+                    swal("Safe Data!");
+                }
+            });
         });
     </script>
+
     <script>
         $(document).on("submit", "#multiple_delete", function (e) {
             e.preventDefault();
@@ -159,13 +162,13 @@
                 buttons: true,
                 dangerMode: true,
             })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        document.getElementById('multiple_delete').submit();
-                    } else {
-                        swal("Safe Data!");
-                    }
-                });
+            .then((willDelete) => {
+                if (willDelete) {
+                    document.getElementById('multiple_delete').submit();
+                } else {
+                    swal("Safe Data!");
+                }
+            });
         });
     </script>
 
@@ -173,8 +176,6 @@
     <!-- Main js -->
     <script src="{{asset('public/admins/js/main.js')}}"></script>
     @stack('js')
-
-
 
 </body>
 
