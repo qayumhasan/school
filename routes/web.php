@@ -265,7 +265,6 @@ Route::group(['prefix'=>'admin/inventory','namespace'=>'Admin'],function(){
         Route::get('/delete/{id}','InventoryController@supplierDelete')->name('inventory.supplier.delete');
     });
 
-
 });
 
 // Inventory area end
