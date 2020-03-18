@@ -17,7 +17,9 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->boolean('status')->default(1);
-            $table->boolean('is_deleted')->default(0);
+            $table->string('deleted_by')->nullable();
+            $table->string('deleted_at')->nullable();
+            $table->string('deleted_status')->nullable();
             $table->timestamps();
         });
     }

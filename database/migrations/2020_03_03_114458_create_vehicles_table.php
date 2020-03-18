@@ -22,6 +22,9 @@ class CreateVehiclesTable extends Migration
             $table->bigInteger('driver_license')->nullable();
             $table->bigInteger('driver_contact')->nullable();
             $table->boolean('status')->default(1);
+            $table->string('deleted_status')->nullable();
+            $table->string('deleted_at')->timestamps();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
         });
     }

@@ -21,7 +21,7 @@
                 </div>
 
             </div>
-        <form id="multiple_delete" action="{{ route('admin.class.multiple.soft.delete') }}" method="post">
+        <form id="multiple_delete" action="{{ route('admin.class.multiple.hard.delete') }}" method="post">
                 @csrf
                 <button type="submit" style="margin: 5px;" class="btn btn-sm btn-danger">
                     <i class="fa fa-trash"></i> Delete all</button>
@@ -80,7 +80,7 @@
                                         @endif
                                     | <a href="#" class="edit_class btn btn-sm btn-blue text-white" data-id="{{ $class->id }}" title="edit" data-toggle="modal"
                                         data-target="#editModal"><i class="fas fa-pencil-alt" ></i></a> |
-                                        <a id="delete" href="{{ route('admin.class.soft.delete', $class->id) }}"
+                                        <a id="delete" href="{{ route('admin.class.hard.delete', $class->id) }}"
                                             class="btn btn-danger btn-sm text-white" title="Delete">
                                             <i class="far fa-trash-alt"></i>
                                         </a>

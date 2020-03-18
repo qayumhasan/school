@@ -18,7 +18,9 @@ class CreateSectionsTable extends Migration
             $table->string('name');
             $table->bigInteger('capacity')->default(0);
             $table->boolean('status')->default(1);
-            $table->boolean('is_deleted')->default(0);
+            $table->string('deleted_status')->nullable();
+            $table->string('deleted_at')->timestamps();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
         });
     }

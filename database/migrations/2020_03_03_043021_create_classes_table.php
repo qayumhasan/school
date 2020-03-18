@@ -18,7 +18,9 @@ class CreateClassesTable extends Migration
             $table->string('name');
             $table->boolean('status')->default(1);
             $table->unsignedBigInteger('class_teacher_id')->nullable();
-            $table->boolean('is_deleted')->default(0);
+            $table->string('deleted_by')->nullable();
+            $table->string('deleted_at')->nullable();
+            $table->string('deleted_status')->nullable();
             $table->timestamps();
         });
     }

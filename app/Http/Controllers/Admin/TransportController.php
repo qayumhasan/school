@@ -82,7 +82,7 @@ class TransportController extends Controller
     {
         $routeVehicles = RouteVehicle::where('route_id', $routeId)->get();
         foreach ($routeVehicles as $value) {
-            $value->delete();
+            $value->singleDelete();
         }
         $updateRoute = Route::where('id', $routeId)->first();
         $updateRoute->is_assigned_vehicle = 0;

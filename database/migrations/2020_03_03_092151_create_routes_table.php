@@ -18,7 +18,9 @@ class CreateRoutesTable extends Migration
             $table->string('name');
             $table->bigInteger('fare');
             $table->boolean('status')->default(1);
-            $table->boolean('is_deleted')->default(1);
+            $table->string('deleted_status')->nullable();
+            $table->string('deleted_at')->timestamps();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
         });
     }

@@ -17,6 +17,9 @@ class CreateExpanseHeadersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->boolean('status');
+            $table->string('deleted_status')->nullable();
+            $table->string('deleted_at')->timestamps();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
         });
     }

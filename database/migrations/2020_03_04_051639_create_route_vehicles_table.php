@@ -17,6 +17,9 @@ class CreateRouteVehiclesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('route_id');
             $table->unsignedBigInteger('vehicle_id');
+            $table->string('deleted_status')->nullable();
+            $table->string('deleted_at')->timestamps();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
             $table->foreign('route_id')->references('id')->on('routes')->onDelete('cascade');
             $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');

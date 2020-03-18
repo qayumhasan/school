@@ -10,7 +10,7 @@ class RouteController extends Controller
 {
     public function index()
     {
-        $routes = Route::latest()->get();
+        $routes = Route::select('id', 'name', 'status', 'fare')->active();
         return view('admin.transport.route.index', compact('routes'));
     }
 
@@ -53,7 +53,7 @@ class RouteController extends Controller
 
     public function delete($routeId)
     {
-        Route::where('id', $routeId)->delete();
+        Route::where('id', $routeId)->singleDelete();
         $notification = array(
             'messege' => 'Route is deleted',
             'alert-type' => 'success'
@@ -71,7 +71,7 @@ class RouteController extends Controller
             return Redirect()->back()->with($notification);
         } else {
             foreach ($request->deleteId as $route_id) {
-                Route::where('id', $route_id)->delete();
+                Route::where('id', $route_id)->singleDelete();
             }
         }
         $notification = array(

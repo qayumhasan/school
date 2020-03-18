@@ -18,7 +18,9 @@ class CreateClassTeachersTable extends Migration
             $table->unsignedBigInteger('class_section_id');
             $table->unsignedBigInteger('employee_id');
             $table->boolean('status')->default(1);
-            $table->boolean('is_deleted')->default(0);
+            $table->string('deleted_status')->nullable(0);
+            $table->string('deleted_at')->timestamps();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
             // $table->foreign('class_section_id')->references('id')->on('class_sections')->onDelete('cascade');
             // $table->foreign('employee_id')->references('id')->on('employees')->onDelete('cascade');
