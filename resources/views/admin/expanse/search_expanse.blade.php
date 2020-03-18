@@ -71,7 +71,6 @@
                             <th>Note</th>
                             <th>Status</th>
                             <th>Amount</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,24 +95,6 @@
                             <td class="center"><span class="btn btn-sm btn-danger">Inactive</span></td>
                             @endif
                             <td>{{$expanse->amount}}</td>
-                            <td>
-                                @if($expanse->status==1)
-                                <a href="{{ route('admin.expanse.status.update', $expanse->id ) }}"
-                                    class="btn btn-success btn-sm ">
-                                    <i class="fas fa-thumbs-up"></i></a>
-                                @else
-                                <a href="{{ route('admin.expanse.status.update', $expanse->id ) }}"
-                                    class="btn btn-danger btn-sm">
-                                    <i class="fas fa-thumbs-down"></i>
-                                </a>
-                                @endif
-                            | <a href="{{ route('admin.expanse.edit', $expanse->id) }}" class="editcat btn btn-sm btn-blue text-white"><i class="fas fa-pencil-alt"></i></a> |
-                                <a id="delete" href="{{ route('admin.expanse.delete', $expanse->id) }}"
-                                    class="btn btn-danger btn-sm text-white" title="Delete">
-                                    <i class="far fa-trash-alt"></i>
-                                </a>
-
-                            </td>
                         </tr>
                         @endforeach
                     </tbody>

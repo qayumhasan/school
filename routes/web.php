@@ -27,7 +27,7 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
     Route::get('/register', 'AuthController@showRegistationPage');
     Route::post('/register', 'AuthController@register')->name('admin.register');
 
-    
+
 });
 
 // Menu area start
@@ -189,7 +189,12 @@ Route::group(['prefix' => 'admin/expanses', 'middleware' => 'auth:admin', 'names
 });
 
 Route::group(['prefix' => 'admin/employees', 'namespace' => 'Admin'], function () {
-    Route::get(md5('create'), 'EmployeeController@create')->name('admin.employee.create');
+    Route::get('/', 'EmployeeController@index')->name('admin.employee.index');
+    Route::get('create', 'EmployeeController@create')->name('admin.employee.create');
+    Route::post('store', 'EmployeeController@store')->name('admin.employee.store');
+    Route::get('edit/{employeeId}', 'EmployeeController@edit')->name('admin.employee.edit');
+    Route::get('change/status/{employeeId}', 'EmployeeController@changeStatus')->name('admin.employee.status.update');
+    Route::get('delete/{employeeId}', 'EmployeeController@delete')->name('admin.employee.delete');
 });
 
 // Hostel  area start
@@ -276,15 +281,17 @@ Route::group(['prefix'=>'admin/inventory','namespace'=>'Admin'],function(){
         Route::patch('/update','InventoryController@supplierUpdate')->name('inventory.supplier.update');
         Route::get('/delete/{id}','InventoryController@supplierDelete')->name('inventory.supplier.delete');
         Route::post('/multi/delete','InventoryController@supplierMultiDelete')->name('admin.inventory.supplier.multidelete');
-        
-        
+
+
     });
 
     Route::group(['prefix'=>'item/stock'],function(){
 
         Route::get('/','InventoryController@stockItemIndex')->name('inventory.item.stock.index');
         Route::post('/store','InventoryController@stockItemStore')->name('inventory.item.stock.create');
+
         Route::get('/edit/{id}','InventoryController@stockItemEdit');
+
     });
 
 });
