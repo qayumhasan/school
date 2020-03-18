@@ -16,6 +16,7 @@
                 <ul class="dashboard-menu">
                     <li>
                         <a href="{{ route('student.create') }}"> Student Admission</a>
+                        <a href="{{ route('student.index') }}">  Student Details</a>
                     </li>
 
                 </ul>
