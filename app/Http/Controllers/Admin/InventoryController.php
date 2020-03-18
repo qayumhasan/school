@@ -8,11 +8,12 @@ use App\InventoryCategory;
 use App\InventoryItem;
 use App\Item;
 use App\ItemSupplier;
+use App\StockItemIndex;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-
+use Illuminate\Support\Facades\Storage;
 
 class InventoryController extends Controller
 {
@@ -509,9 +510,14 @@ class InventoryController extends Controller
 
     public function stockItemIndex()
     {
+  
+
         $categores = InventoryCategory::active();
-        $items = InventoryItem::active();
-        return view('admin.inventory.item_stock',compact('categores','items'));
+        $inventoryitems = InventoryItem::active();
+        $suppliers = ItemSupplier::active();
+        $stores = Item::active();
+        $stockitems =StockItemIndex::with(['inventoryitem','category','supplier','store'])->active(); 
+        return view('admin.inventory.item_stock',compact('categores','inventoryitems','suppliers','stores','stockitems'));
     }
 
 
@@ -519,7 +525,60 @@ class InventoryController extends Controller
 
     public function stockItemStore(Request $request)
     {
-        // return $request;
-        return ($_FILES['stock_doc'] == 'image/*' || $_FILES['stock_doc'] == 'application/pdf');
+        
+        $request->validate([
+            'category_id'=>'required',
+            'items_id'=>'required',
+            'supplier_id'=>'required',
+            'store_id'=>'required',
+            'quantity'=>'required',
+            'purchase'=>'required|numeric',
+            'data'=>'required',
+        ],[
+            'category_id.required'=>'Category Field is Required!',
+            'items_id.required'=>'Item Field  is Required!',
+            'supplier_id.required'=>'Supplier Field  is Required!',
+            'store_id.required'=>'Store Field must is Required!',
+            'purchase.numeric'=>'Store Field must be Numberic!',
+        ]);
+
+        $data =StockItemIndex::insertgetid ([
+            'category_id'=>$request->category_id,
+            'items_id'=>$request->items_id,
+            'supplier_id'=>$request->supplier_id,
+            'store_id'=>$request->store_id,
+            'quantity'=>$request->quantity,
+            'purchase'=>$request->purchase,
+            'data'=>$request->data,
+            'document'=>$request->doc_file,
+            'description'=>$request->description,
+            'created_at'=>Carbon::now(),
+        ]);
+        $data =StockItemIndex::findOrFail($data);
+
+        if ($request->hasFile('doc_file')){
+            $data->document = $request->file('doc_file')->store('public/uploads/inventory');
+            $data->save();
+        }
+
+
+        $notification=array(
+            'messege'=>' Stock Items Created Successfully!',
+            'alert-type'=>'success'
+             );
+         return redirect()->back()->with($notification);
+
+
+        
+    }
+
+
+    // item stock edit
+
+    public function stockItemEdit($id)
+    {
+        $stockitem =StockItemIndex::findOrFail($id);
+
+        return response()->json($stockitem);
     }
 }
