@@ -126,9 +126,11 @@
                     <span class="menu-text">Inventory</span>
                 </a>
                 <ul class="dashboard-menu">
-                    <li><a href="{{route('inventory.category.index')}}">Inventory Category</a></li>
-                    <li><a href="{{route('item.index')}}">Inventory Items</a></li>
+                    <li><a href="{{route('inventory.item.stock.index')}}">Add Item Stock</a></li>
+                    <li><a href="{{route('inventory.category.index')}}">Item Category</a></li>
+                    <li><a href="{{route('item.index')}}">Items Store</a></li>
                     <li><a href="{{route('admin.inventory.supplier')}}">Supplier</a></li>
+                    <li><a href="{{route('admin.item.index')}}">Add Items</a></li>
                     <li><a href="chart-float.html">Student Hostel Report</a></li>
                 </ul>
             </li>

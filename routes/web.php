@@ -27,7 +27,7 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
     Route::get('/register', 'AuthController@showRegistationPage');
     Route::post('/register', 'AuthController@register')->name('admin.register');
 
-    Route::get('/online/user', 'AuthController@onlineUser')->name('online.user');
+    
 });
 
 // Menu area start
@@ -227,18 +227,18 @@ Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
 Route::group(['prefix' => 'admin/student', 'namespace' => 'Admin'], function () {
 
     Route::get('/create', 'StudentAdmissionController@create')->name('student.create');
+    Route::post('/submit', 'StudentAdmissionController@store')->name('student.insert');
     Route::get('/section/all/{id}', 'StudentAdmissionController@getsection');
     Route::get('/route/{id}', 'StudentAdmissionController@getbus');
     Route::get('/get/hostel/{id}','StudentAdmissionController@getroom');
+
 });
 
 // Inventory area start
 Route::group(['prefix'=>'admin/inventory','namespace'=>'Admin'],function(){
     Route::group(['prefix'=>'category'],function(){
         Route::get('/','InventoryController@categoryIndex')->name('inventory.category.index');
-
         Route::post('/store','InventoryController@categoryStore')->name('inventory.category.store');
-
         Route::get('/edit/{id}','InventoryController@categoryEdit');
         Route::patch('/update','InventoryController@categoryUpdate')->name('inventory.category.update');
         Route::get('/delete/{id}','InventoryController@categoryDelete')->name('inventory.category.delete');
@@ -254,6 +254,15 @@ Route::group(['prefix'=>'admin/inventory','namespace'=>'Admin'],function(){
         Route::get('/update/status/{id}','InventoryController@itemStatus')->name('inventory.item.status.update');
         Route::post('/multidelete','InventoryController@itemMultiDelete')->name('inventory.item.multidelete');
         Route::get('/delete/{id}','InventoryController@itemDelete')->name('inventory.item.delete');
+
+
+        Route::get('/add/items','InventoryController@addItems')->name('admin.item.index');
+        Route::post('/add/items/create','InventoryController@itemsStore')->name('admin.item.create');
+        Route::get('/items/edit/{id}','InventoryController@itemsEdit');
+        Route::patch('/items/update','InventoryController@itemsUpdate')->name('admin.items.update');
+        Route::get('/items/delete/{id}','InventoryController@itemsDelete')->name('admin.items.delete');
+        Route::get('/items/status/update/{id}','InventoryController@itemsStatusUpdate')->name('admin.items.status.update');
+        Route::post('/items/multi/delete','InventoryController@itemsMultiDelete')->name('admin.items.multi.delete');
     });
 
     Route::group(['prefix'=>'supplier'],function(){
@@ -263,9 +272,22 @@ Route::group(['prefix'=>'admin/inventory','namespace'=>'Admin'],function(){
 
         Route::patch('/update','InventoryController@supplierUpdate')->name('inventory.supplier.update');
         Route::get('/delete/{id}','InventoryController@supplierDelete')->name('inventory.supplier.delete');
+        Route::post('/multi/delete','InventoryController@supplierMultiDelete')->name('admin.inventory.supplier.multidelete');
+        
+        
+    });
+
+    Route::group(['prefix'=>'item/stock'],function(){
+
+        Route::get('/','InventoryController@stockItemIndex')->name('inventory.item.stock.index');
+        Route::post('/store','InventoryController@stockItemStore')->name('inventory.item.stock.create');
     });
 
 });
+
+
+Route::get('/online/user', 'HomeController@onlineUser')->name('online.user');
+
 
 // Inventory area end
 

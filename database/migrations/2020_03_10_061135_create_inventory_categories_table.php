@@ -17,6 +17,11 @@ class CreateInventoryCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('category');
             $table->text('description');
+
+            $table->string('deleted_by')->nullable();
+            $table->string('deleted_at')->nullable();
+            $table->string('deleted_status')->nullable();
+
             $table->integer('status')->default(1);
             $table->timestamps();
         });
