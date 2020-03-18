@@ -281,6 +281,7 @@ Route::group(['prefix'=>'admin/inventory','namespace'=>'Admin'],function(){
 
         Route::get('/','InventoryController@stockItemIndex')->name('inventory.item.stock.index');
         Route::post('/store','InventoryController@stockItemStore')->name('inventory.item.stock.create');
+        Route::get('/edit/{id}','InventoryController@stockItemEdit');
     });
 
 });
