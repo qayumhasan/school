@@ -227,6 +227,9 @@ Route::group(['prefix'=>'admin/hostel','namespace'=>'Admin'],function(){
 Route::group(['prefix' => 'admin/student', 'namespace' => 'Admin'], function () {
 
     Route::get('/create', 'StudentAdmissionController@create')->name('student.create');
+    Route::post('/update/{id}', 'StudentAdmissionController@update')->name('student.update');
+    Route::get('/all', 'StudentAdmissionController@index')->name('student.index');
+    Route::get('/edit/{id}', 'StudentAdmissionController@edit');
     Route::post('/submit', 'StudentAdmissionController@store')->name('student.insert');
     Route::get('/section/all/{id}', 'StudentAdmissionController@getsection');
     Route::get('/route/{id}', 'StudentAdmissionController@getbus');
