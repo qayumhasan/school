@@ -21,7 +21,9 @@
                 </div>
 
             </div>
-            <form id="multiple_delete" action="{{ route('admin.category.multiple.soft.delete') }}" method="post">
+
+            <form action="{{ route('admin.category.multiple.soft.delete') }}" id="multiple_delete" method="post">
+
                 @csrf
                 <button type="submit" style="margin: 5px;" class="btn btn-sm btn-danger">
                     <i class="fa fa-trash"></i> Delete all</button>

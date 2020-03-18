@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateInventoryCategoriesTable extends Migration
+class CreateHostelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateInventoryCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('inventory_categories', function (Blueprint $table) {
+        Schema::create('hostels', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('category');
+            $table->string('hostel_name');
+            $table->integer('type');
+            $table->string('address');
+            $table->integer('intake');
             $table->text('description');
-
-            $table->string('deleted_by')->nullable();
-            $table->string('deleted_at')->nullable();
-            $table->string('deleted_status')->nullable();
-
-            $table->integer('status')->default(1);
+            $table->string('status')->default(1);
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ class CreateInventoryCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventory_categories');
+        Schema::dropIfExists('hostels');
     }
 }
