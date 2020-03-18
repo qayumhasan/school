@@ -80,7 +80,7 @@
                     <span class="menu-text">Emplyees</span>
                 </a>
                 <ul class="dashboard-menu">
-                    <li><a href="#">Employee List</a></li>
+                <li><a href="{{ route('admin.employee.index') }}">Employee List</a></li>
                     <li><a href="{{ route('admin.employee.create') }}">Add Employee</a></li>
                     <li><a href="#">Search Employee</a></li>
 

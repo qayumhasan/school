@@ -24,7 +24,7 @@ class StudentAdmissionController extends Controller
     public function __construct(){
 
     }
-    // 
+    //
     public function index(){
 
     }
@@ -38,7 +38,7 @@ class StudentAdmissionController extends Controller
         $bloodgroup=BloodGroup::get();
         $groups=Group::OrderBy('id','DESC')->get();
     	return view('admin.student.add',compact('allClass','gender','category','routes','hostel','bloodgroup','groups'));
-    } 
+    }
     // get section
     public function getsection($id){
     	$Sections = ClassSection::with(['section'])->where('class_id', $id)->get();
@@ -73,7 +73,7 @@ class StudentAdmissionController extends Controller
         //     'guardian_name' => 'required',
         //     'guardian_phone' => 'required',
         //     'stu_pic' => 'required',
-        
+
         // ],[
         //     'admission_no.required' => 'Admission_Num must not be empty!',
         //     'roll_no.required' => 'Roll_No must not be empty!',

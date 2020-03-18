@@ -2,10 +2,12 @@
 
 namespace App;
 
+use App\Group;
+use App\BloodGroup;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Cache;
 
 class Admin extends Authenticatable
 {
@@ -34,5 +36,13 @@ class Admin extends Authenticatable
         return Cache::has('online'.$this->id);
     }
 
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
+    }
+    public function bloodGroup()
+    {
+        return $this->belongsTo(BloodGroup::class);
+    }
 
 }
