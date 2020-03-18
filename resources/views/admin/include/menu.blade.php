@@ -1,126 +1,143 @@
 <!-- sidebar area -->
 <aside class="sidebar-wrapper ">
-              <nav class="sidebar-nav">
-             	 <ul class="metismenu" id="menu1">
-             	 	<li class="single-nav-wrapper">
-	                    <a href="{{ route('admin.home') }}" class="menu-item">
-	                        <span class="left-icon"><i class="fas fa-home"></i></span>
-	                        <span class="menu-text">Home</span>
-	                    </a>
-	                </li>
-             	 	<li class="single-nav-wrapper">
-                      <a href="{{ route('category.index') }}" class="menu-item">
-	                        <span class="left-icon"><i class="fas fa-home"></i></span>
-	                        <span class="menu-text">Categories</span>
-	                    </a>
-	                </li>
-	                <li class="single-nav-wrapper">
-                        <a class="menu-item" href="{{ route('admin.class.index') }}" aria-expanded="false">
-                        <span class="left-icon"><i class="far fa-edit"></i></span>
-                            <span class="menu-text">Classes</span>
-                        </a>
-	                </li>
+    <nav class="sidebar-nav">
+        <ul class="metismenu" id="menu1">
+            <li class="single-nav-wrapper">
+                <a href="{{ route('admin.home') }}" class="menu-item">
+                    <span class="left-icon"><i class="fas fa-home"></i></span>
+                    <span class="menu-text">Home</span>
+                </a>
+            </li>
+               <li class="single-nav-wrapper {{ Request::is('admin/academic*') ? 'mm-active' : '' }}">
+                <a class="has-arrow menu-item" href="#" aria-expanded="false">
+                    <span class="left-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="menu-text">Student</span>
+                </a>
+                <ul class="dashboard-menu">
+                    <li>
+                        <a href="{{ route('student.create') }}"> Student Admission</a>
+                    </li>
 
-	                  <li class="single-nav-wrapper">
-	                      <a class="has-arrow menu-item" href="#" aria-expanded="false">
-	                        <span class="left-icon"><i class="fas fa-table"></i></span>
-	                          <span class="menu-text">Transport</span>
-	                      </a>
-	                        <ul class="dashboard-menu">
-	                          <li><a href="{{ route('admin.route.index') }}">Routes</a></li>
-	                          <li><a href="{{ route('admin.vehicle.index') }}">Vehicles</a></li>
-	                        </ul>
-	                  </li>
-	                  <li class="single-nav-wrapper">
-	                      <a class="has-arrow menu-item" href="#" aria-expanded="false">
-	                        <span class="left-icon"><i class="fas fa-chart-line"></i></span>
-	                        <span class="menu-text">Charts</span>
-	                      </a>
-	                        <ul class="dashboard-menu">
-	                          <li><a href="chart-float.html">Float Chart</a></li>
-		                      <li><a href="chart-float.html">Float Chart</a></li>
-		                      <li><a href="chart-float.html">Float Chart</a></li>
-	                       </ul>
-	                  </li>
-	                  <li class="single-nav-wrapper">
-	                      <a class="has-arrow menu-item" href="#" aria-expanded="false">
-	                        <span class="left-icon"><i class="fas fa-sort-alpha-down-alt"></i></span>
-	                        <span class="menu-text">UI Elements</span>
-	                      </a>
-	                        <ul class="dashboard-menu">
-	                            <li><a href="typography.html">Typography</a></li>
-		                        <li><a href="button.html">Buttons</a></li>
-		                        <li><a href="notification.html">Notification</a></li>
-		                        <li><a href="panels.html">Panels</a></li>
-		                        <li><a href="tabs.html">Tab</a></li>
-		                        <li><a href="modals.html">Modals</a></li>
-		                        <li><a href="progressbars.html">Progressber</a></li>
-		                        <li><a href="list.html">List View</a></li>
-		                        <li><a href="icheck_toggle_pagination.html">iCheck, Toggle</a></li>
-		                        <li><a href="label-badge-alert.html">labels, Badges</a></li>
-		                        <li><a href="treeview.html">Tree View</a></li>
-	                       </ul>
-	                  </li>
-	                  <li class="single-nav-wrapper">
-	                      <a class="has-arrow menu-item" href="#" aria-expanded="false">
-	                        <span class="left-icon"><i class="fas fa-map-marker-alt"></i></span>
-	                        <span class="menu-text">Maps</span>
-	                      </a>
-	                      <ul class="dashboard-menu">
-	                        <li><a href="#">Amcharts Maps</a></li>
-	                        <li><a href="#">Data Maps</a></li>
-	                        <li><a href="#">Jvector Maps</a></li>
-	                        <li><a href="#">Google map</a></li>
-	                        <li><a href="#">Snazzy Map</a></li>
-	                      </ul>
-	                  </li>
-	                  <li class="single-nav-wrapper">
-	                      <a class="has-arrow menu-item" href="#" aria-expanded="false">
-	                        <span class="left-icon"><i class="far fa-envelope"></i></span>
-	                        <span class="menu-text">Mailbox</span>
-	                      </a>
-	                      <ul class="dashboard-menu">
-	                        <li><a href="#">Mailbox</a></li>
-	                        <li><a href="#">Mailbox Details</a></li>
-	                        <li><a href="#">Compose</a></li>
-	                      </ul>
-	                  </li>
-	                  <li class="single-nav-wrapper">
-	                      <a class="has-arrow menu-item" href="#" aria-expanded="false">
-	                        <span class="left-icon"><i class="fas fa-mobile-alt"></i></span>
-	                        <span class="menu-text">App View</span>
-	                      </a>
-	                      <ul class="dashboard-menu">
-	                        <li><a href="invoice.html">Invoice</a></li>
-	                        <li><a href="#">Vertical timeline</a></li>
-	                        <li><a href="#">Horizontal timeline</a></li>
-	                        <li><a href="#">Pricing Table</a></li>
-	                      </ul>
-	                  </li>
-	                  <li class="single-nav-wrapper">
-	                      <a class="has-arrow menu-item" href="#" aria-expanded="false">
-	                        <span class="left-icon"><i class="far fa-copy"></i></span>
-	                        <span class="menu-text">Trashes</span>
-	                      </a>
-	                      <ul class="dashboard-menu">
-                          <li><a href="{{ route('admin.category.trashes') }}">Categories</a></li>
-                          <li><a href="{{ route('admin.class.trashes') }}">Class</a></li>
-	                        <li><a href="screen_lock.html">screen lock</a></li>
-	                        <li><a href="forget.html">forget Password</a></li>
-	                      </ul>
-	                  </li>
-	                  <li class="single-nav-wrapper">
-	                    <a href="#" class="menu-item">
-	                        <span class="left-icon"><i class="fas fa-home"></i></span>
-	                        <span class="menu-text">Calender</span>
-	                    </a>
-	                  </li>
-	                  <li class="single-nav-wrapper">
-	                    <a href="blank_page.html" class="menu-item">
-	                        <span class="left-icon"><i class="fas fa-file"></i></span>
-	                        <span class="menu-text">Blank Page</span>
-	                    </a>
-	                  </li>
-	                </ul>
-              </nav>
-            </aside><!-- /sidebar Area-->
+                </ul>
+            </li>
+            
+            <li class="single-nav-wrapper">
+                <a href="{{ route('category.index') }}" class="menu-item">
+                    <span class="left-icon"><i class="fas fa-home"></i></span>
+                    <span class="menu-text">Categories</span>
+                </a>
+            </li>
+
+            <li class="single-nav-wrapper {{ Request::is('admin/academic*') ? 'mm-active' : '' }}">
+                <a class="has-arrow menu-item" href="#" aria-expanded="false">
+                    <span class="left-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="menu-text">Academic</span>
+                </a>
+                <ul class="dashboard-menu">
+                    <li>
+                        <a href="{{ route('admin.class.index') }}"> Class</a>
+                        <a href="{{ route('academic.assign.class.teacher.index') }}"> Asign class teacher</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.academic.subject.index') }}"> Subject </a>
+                        <a href="{{ route('admin.academic.assign.all.assigned.subject') }}"> Asign subject to class</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.academic.section.index') }}"> Section </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class="single-nav-wrapper {{ Request::is('admin/transport*') ? 'mm-active' : '' }}">
+                <a class="has-arrow menu-item" href="#" aria-expanded="false">
+                    <span class="left-icon"><i class="fas fa-table"></i></span>
+                    <span class="menu-text">Transport</span>
+                </a>
+                <ul class="dashboard-menu">
+                    <li><a href="{{ route('admin.route.index') }}">Routes</a></li>
+                    <li><a href="{{ route('admin.vehicle.index') }}">Vehicles</a></li>
+                    <li><a href="{{ route('admin.assign.vehicle.index') }}">Assign Vehicle</a></li>
+                    <li><a href="">Student transport report (pending)</a></li>
+                </ul>
+            </li>
+
+            <li class="single-nav-wrapper {{ Request::is('admin/expanses*') ? 'mm-active' : '' }}">
+                <a class="has-arrow menu-item" href="#" aria-expanded="false">
+                    <span class="left-icon"><i class="fas fa-table"></i></span>
+                    <span class="menu-text">Expanses</span>
+                </a>
+                <ul class="dashboard-menu">
+                    <li><a href="{{ route('admin.expanse.index') }}">expanse</a></li>
+                    <li><a href="{{ route('admin.expanse.search') }}">Search expanse</a></li>
+                    <li><a href="{{ route('admin.expanse.header.all') }}">expanse header</a></li>
+                </ul>
+            </li>
+
+            <!-- Menus Area start from here -->
+
+            <li class="single-nav-wrapper">
+                <a class="has-arrow menu-item" href="#" aria-expanded="false">
+                    <span class="left-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="menu-text">Setting</span>
+                </a>
+                <ul class="dashboard-menu">
+                    <li><a href="{{route('admin.menu.setting')}}">Menus</a></li>
+                </ul>
+            </li>
+            <!-- Menus area end from here -->
+
+
+            <!-- Hostel area start -->
+
+            <li class="single-nav-wrapper">
+                <a class="has-arrow menu-item" href="#" aria-expanded="false">
+                    <span class="left-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="menu-text">Hostel</span>
+                </a>
+                <ul class="dashboard-menu">
+                    <li><a href="{{route('hostel.addroom')}}">Hostel Room</a></li>
+                    <li><a href="{{route('room.type')}}">Room Type</a></li>
+                    <li><a href="{{route('admin.hostel')}}">Hostel</a></li>
+                    <li><a href="chart-float.html">Student Hostel Report</a></li>
+                </ul>
+            </li>
+
+            <!-- Hostel area end -->
+
+             <!-- Hostel area start -->
+
+             <li class="single-nav-wrapper">
+                <a class="has-arrow menu-item" href="#" aria-expanded="false">
+                    <span class="left-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="menu-text">Inventory</span>
+                </a>
+                <ul class="dashboard-menu">
+                    <li><a href="{{route('inventory.item.stock.index')}}">Add Item Stock</a></li>
+                    <li><a href="{{route('inventory.category.index')}}">Item Category</a></li>
+                    <li><a href="{{route('item.index')}}">Items Store</a></li>
+                    <li><a href="{{route('admin.inventory.supplier')}}">Supplier</a></li>
+                    <li><a href="{{route('admin.item.index')}}">Add Items</a></li>
+                    <li><a href="chart-float.html">Student Hostel Report</a></li>
+                </ul>
+            </li>
+
+            <!-- Hostel area end -->
+
+
+            <!-- online user -->
+            <li class="single-nav-wrapper">
+                <a href="{{ route('online.user') }}" class="menu-item">
+                    <span class="left-icon"><i class="fas fa-user"></i></span>
+                    <span class="menu-text">Online User</span>
+                </a>
+            </li>
+            <!-- end online user -->
+
+
+
+
+
+        </ul>
+    </nav>
+</aside><!-- /sidebar Area-->

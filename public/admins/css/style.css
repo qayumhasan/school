@@ -88,7 +88,7 @@ button,
 .btn-blue:hover{
   background-color: #079AFF!important;
 }
-/***  Check Box 
+/***  Check Box
 ------------------------------------------------*/
 .chech_container {
   display: block;
@@ -162,7 +162,7 @@ button,
   background-color: #353C48;
 }
 .panel_header .panel_title{
-  padding:0px;
+  padding: 0px 18px;
   margin:0px;
   color:#fff;
   text-transform: capitalize;
@@ -172,11 +172,11 @@ button,
   margin-right:10px;
   font-size: 18px;
 }
-.panel .panel_body{
-  display: block;
-  overflow:hidden;
-  padding:10px;
-  background-color: #fff;
+.panel .panel_body {
+    display: block;
+    overflow: hidden;
+    padding: 12px 26px;
+    background-color: #fff;
 }
 
 .panel .min-height-450{
@@ -353,10 +353,10 @@ section{
 }
 .header_area .header_menu>li:nth-child(1)>a>span{
   background-color: #00a65a;
-} 
+}
 .header_area .header_menu>li:nth-child(2)>a>span{
   background: #f39c12 ;
-} 
+}
 .header_area .header_menu li .responsive_menu_toggle{
     display: none;
   }
@@ -916,7 +916,7 @@ footer .developby a:hover{
   color:#000;
   opacity: .5;
 }
-/*** index 
+/*** index
 ==========================================================================================================*/
 .counter_area{
 
@@ -1007,7 +1007,7 @@ footer .developby a:hover{
   .center_container{
     padding-bottom: 73px;
   }
-  
+
 }
 @media screen and (max-width: 576px) {
   .center_content{
@@ -1170,8 +1170,8 @@ div.dataTables_wrapper div.dataTables_length label{
 }
 .btn-default.active.focus, .btn-default.active:focus,
 .btn-default.active:hover, .btn-default:active.focus,
-.btn-default:active:focus, .btn-default:active:hover, 
-.open>.dropdown-toggle.btn-default.focus, 
+.btn-default:active:focus, .btn-default:active:hover,
+.open>.dropdown-toggle.btn-default.focus,
 .open>.dropdown-toggle.btn-default:focus,
 .open>.dropdown-toggle.btn-default:hover {
     color: #333;
@@ -1703,7 +1703,7 @@ div.dataTables_wrapper div.dataTables_length label{
     transition: none;
     -webkit-transition: none;
 }
-/*** invoice 
+/*** invoice
 =========================================================================================================================*/
 .invoice_area{}
 .invoice_area .item_right{
@@ -1747,7 +1747,7 @@ div.dataTables_wrapper div.dataTables_length label{
   height:auto;
 }
 .upload_file_wrapper #uploads div{
-  
+
 }
 .upload_file_wrapper #uploads div:first-child{
   overflow:hidden;
@@ -2075,3 +2075,14 @@ div.dataTables_wrapper div.dataTables_length label{
   padding:10px;
 }
 
+/* Data table check all style */
+label.chech_container {
+    font-size: 13px;
+    text-transform: initial;
+}
+
+/* Edit modal Style */
+
+.edit_content {
+    margin-top: 10rem;
+}

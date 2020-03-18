@@ -40,6 +40,7 @@
                                     <th>Vehicle Model</th>
                                     <th>Year Made</th>
                                     <th>Driver</th>
+                                    <th>Sit Quantity</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -58,6 +59,7 @@
                                     <td>{{ $vehicle->vehicle_model }}</td>
                                     <td>{{ $vehicle->year_made }}</td>
                                     <td>N/A</td>
+                                    <td>{{ $vehicle->sit_quantity }}</td>
                                     @if($vehicle->status==1)
                                     <td class="center"><span class="btn btn-sm btn-success">Active</span></td>
                                     @else
@@ -74,7 +76,8 @@
                                             <i class="fas fa-thumbs-down"></i>
                                         </a>
                                         @endif
-                                    | <a href="{{ route('admin.vehicle.edit', $vehicle->id) }}" class="edit_vehicle btn btn-sm btn-blue text-white">
+                                    | <a data-id="{{ $vehicle->id }}" title="edit" data-toggle="modal"
+                                        data-target="#editModal" class="edit_vehicle btn btn-sm btn-blue text-white">
                                             <i class="fas fa-pencil-alt"></i>
                                             </a> |
                                         <a id="delete" href="{{ route('admin.vehicle.delete', $vehicle->id) }}"
@@ -136,20 +139,10 @@
                     </div>
 
                     <div class="form-group row">
-
                         <div class="col-sm-12">
-                            <label for="inputEmail3" class="col-form-label text-right">Driver Name :</label>
-                            <select name="driver_id" class="form-control">
-                                <option value="">Select Driver</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="col-sm-12">
-                            <label for="inputEmail3" class="col-form-label text-right">Driver License (opt) :</label>
-                            <input type="text" class="form-control" placeholder="Driver License" name="driver_license">
-
+                            <label for="inputEmail3" class="col-form-label text-right">Sit qunatity :</label>
+                            <input type="number" class="form-control" placeholder="Sit quantity" name="sit_quantity">
+                            <span class="text-danger">{{ $errors->first('sit_quantity') }}</span>
                         </div>
                     </div>
 
@@ -159,6 +152,24 @@
                     </div>
 
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content edit_content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Update Vehicle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body edit_modal_body">
+
             </div>
         </div>
     </div>
@@ -184,6 +195,22 @@
 
     });
 
+</script>
+
+<script>
+    $(document).ready(function () {
+       $(document).on('click', '.edit_vehicle', function(){
+           var vehicle_id = $(this).data('id');
+           $.ajax({
+               url:"{{ url('admin/transport/vehicles/edit/') }}" + "/" + vehicle_id,
+               type:'get',
+               success:function(data){
+                   $('.edit_modal_body').empty();
+                   $('.edit_modal_body').append(data);
+               }
+           });
+       });
+   });
 </script>
 
 

@@ -21,7 +21,9 @@
                 </div>
 
             </div>
+
             <form action="{{ route('admin.category.multiple.soft.delete') }}" id="multiple_delete" method="post">
+
                 @csrf
                 <button type="submit" style="margin: 5px;" class="btn btn-sm btn-danger">
                     <i class="fa fa-trash"></i> Delete all</button>
@@ -189,7 +191,7 @@
             var categoryId = $(this).data('id');
             if (categoryId) {
                 $.ajax({
-                    url: "{{ url('category/edit/') }}/" + categoryId,
+                    url: "{{ url('admin/category/edit/') }}/" + categoryId,
                     type: "GET",
                     dataType: "json",
                     success: function (data) {
