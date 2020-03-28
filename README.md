@@ -4,5 +4,5 @@
 ** Employee Section
 
 ## Qayum Hasan
-** Inventory
-** Library
+** Inventory Section
+** Library Section
