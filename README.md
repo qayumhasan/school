@@ -1,6 +1,7 @@
 # Current Working list for school management
 ## Harision
-** Academic Section 
+** Academic Section
+** Employee Section
 
 ## Qayum Hasan
 ** Inventory
