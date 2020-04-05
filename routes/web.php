@@ -296,6 +296,27 @@ Route::group(['prefix'=>'admin/inventory','namespace'=>'Admin'],function(){
 
 });
 
+Route::group(['prefix'=>'admin/library','namespace'=>'Admin'],function(){
+
+    Route::group(['prefix'=>'books'],function(){
+
+        Route::get('/','LibraryController@bookList')->name('admin.book.index');
+        Route::get('/delete/{id}','LibraryController@bookDelete')->name('admin.book.delete');
+        Route::get('/status/{id}','LibraryController@bookStatus')->name('admin.book.status');
+        Route::get('/edit/{id}','LibraryController@bookEdit');
+        Route::post('/store','LibraryController@bookStore')->name('admin.library.book.store');
+        Route::post('/muli/delete','LibraryController@bookMultiDelete')->name('admin.book.multidelete');
+        Route::PATCH('/update','LibraryController@bookUpdate')->name('admin.library.book.update');
+        
+    });
+
+    Route::group(['prefix'=>'member'],function(){
+        Route::get('/','LibraryController@libraryList')->name('admin.library.members');
+        Route::get('/store','LibraryController@libraryMemberStore')->name('admin.library.members.store');
+    });
+
+});
+
 
 Route::get('/online/user', 'HomeController@onlineUser')->name('online.user');
 

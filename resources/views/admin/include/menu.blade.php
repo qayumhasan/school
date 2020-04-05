@@ -139,6 +139,26 @@
             <!-- Hostel area end -->
 
 
+
+
+            <!-- laibrary area start from here -->
+             <li class="single-nav-wrapper">
+                <a class="has-arrow menu-item" href="#" aria-expanded="false">
+                    <span class="left-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="menu-text">Library</span>
+                </a>
+                <ul class="dashboard-menu">
+                    <li><a href="{{route('admin.book.index')}}">Book List</a></li>
+                    <li><a href="{{route('admin.library.members')}}">Library Members</a></li>
+
+
+                </ul>
+            </li>
+            <!-- laibrary area start from end -->
+
+
+
+
             <!-- online user -->
             <li class="single-nav-wrapper">
                 <a href="{{ route('online.user') }}" class="menu-item">

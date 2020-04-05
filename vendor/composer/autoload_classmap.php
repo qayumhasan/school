@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Admin' => $baseDir . '/app/Admin.php',
     'App\\BloodGroup' => $baseDir . '/app/BloodGroup.php',
+    'App\\Book' => $baseDir . '/app/Book.php',
     'App\\Category' => $baseDir . '/app/Category.php',
     'App\\ClassSection' => $baseDir . '/app/ClassSection.php',
     'App\\ClassSubject' => $baseDir . '/app/ClassSubject.php',
@@ -33,6 +34,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\ExpanseHeaderController' => $baseDir . '/app/Http/Controllers/Admin/ExpanseHeaderController.php',
     'App\\Http\\Controllers\\Admin\\HostelController' => $baseDir . '/app/Http/Controllers/Admin/HostelController.php',
     'App\\Http\\Controllers\\Admin\\InventoryController' => $baseDir . '/app/Http/Controllers/Admin/InventoryController.php',
+    'App\\Http\\Controllers\\Admin\\LibraryController' => $baseDir . '/app/Http/Controllers/Admin/LibraryController.php',
     'App\\Http\\Controllers\\Admin\\RoomTypeController' => $baseDir . '/app/Http/Controllers/Admin/RoomTypeController.php',
     'App\\Http\\Controllers\\Admin\\RouteController' => $baseDir . '/app/Http/Controllers/Admin/RouteController.php',
     'App\\Http\\Controllers\\Admin\\SectionController' => $baseDir . '/app/Http/Controllers/Admin/SectionController.php',
@@ -61,6 +63,7 @@ return array(
     'App\\InventoryItem' => $baseDir . '/app/InventoryItem.php',
     'App\\Item' => $baseDir . '/app/Item.php',
     'App\\ItemSupplier' => $baseDir . '/app/ItemSupplier.php',
+    'App\\LibraryMember' => $baseDir . '/app/LibraryMember.php',
     'App\\Menu' => $baseDir . '/app/Menu.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

@@ -532,6 +532,7 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
     public static $classMap = array (
         'App\\Admin' => __DIR__ . '/../..' . '/app/Admin.php',
         'App\\BloodGroup' => __DIR__ . '/../..' . '/app/BloodGroup.php',
+        'App\\Book' => __DIR__ . '/../..' . '/app/Book.php',
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\ClassSection' => __DIR__ . '/../..' . '/app/ClassSection.php',
         'App\\ClassSubject' => __DIR__ . '/../..' . '/app/ClassSubject.php',
@@ -557,6 +558,7 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'App\\Http\\Controllers\\Admin\\ExpanseHeaderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ExpanseHeaderController.php',
         'App\\Http\\Controllers\\Admin\\HostelController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/HostelController.php',
         'App\\Http\\Controllers\\Admin\\InventoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/InventoryController.php',
+        'App\\Http\\Controllers\\Admin\\LibraryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/LibraryController.php',
         'App\\Http\\Controllers\\Admin\\RoomTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RoomTypeController.php',
         'App\\Http\\Controllers\\Admin\\RouteController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/RouteController.php',
         'App\\Http\\Controllers\\Admin\\SectionController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SectionController.php',
@@ -585,6 +587,7 @@ class ComposerStaticIniteaa8bf296efb5092a9627eb9ae5dde28
         'App\\InventoryItem' => __DIR__ . '/../..' . '/app/InventoryItem.php',
         'App\\Item' => __DIR__ . '/../..' . '/app/Item.php',
         'App\\ItemSupplier' => __DIR__ . '/../..' . '/app/ItemSupplier.php',
+        'App\\LibraryMember' => __DIR__ . '/../..' . '/app/LibraryMember.php',
         'App\\Menu' => __DIR__ . '/../..' . '/app/Menu.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
